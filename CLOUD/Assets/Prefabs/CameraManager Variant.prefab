@@ -31,6 +31,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 4.942236
       objectReference: {fileID: 0}
+    - target: {fileID: 3529453095960604824, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529453095960604824, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.23584908
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529453095960604824, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.23133332
+      objectReference: {fileID: 0}
+    - target: {fileID: 3529453095960604824, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.06786223
+      objectReference: {fileID: 0}
     - target: {fileID: 3529453096759369779, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_ScreenY
       value: 0.6

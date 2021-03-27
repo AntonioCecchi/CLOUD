@@ -42,7 +42,7 @@ public class Player_Physic : MonoBehaviour
     private GameObject seventh;
     private GameObject eighth;
 
-    public int totalChildrenNumber;
+    public float totalChildrenNumber;
 
     #endregion
 
@@ -81,14 +81,33 @@ public class Player_Physic : MonoBehaviour
         {
             dirX = Input.acceleration.x * moveSpeed;
             transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
-            Vector3 movement = new Vector3(dirX, 0f, 0f);
 
-            transform.position += movement * Time.deltaTime * moveSpeed;
+            Debug.Log(dirX);
+
+            if(dirX > 0 && dirX < 0.1)
+            {
+                
+            }
+            else
+            if(dirX < 0 && dirX > - 0.1)
+            {
+
+            }
+            else
+            {
+                Vector3 movement = new Vector3(dirX, 0f, 0f);
+
+                transform.position += movement * Time.deltaTime * moveSpeed;
+            }
+            
         }
         #endregion
 
 
         #region Jump
+        
+
+        jumpStrenght = jumpStrenght + (totalChildrenNumber / 2);
 
         if (GroundCheck.activeSelf == false) //se il mio ground check NON è attivo (quindi ho figli addosso) fammi saltare solo quando la mia veloctità in Y è negativa
         {

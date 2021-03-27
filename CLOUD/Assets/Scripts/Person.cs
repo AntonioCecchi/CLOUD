@@ -11,7 +11,9 @@ public class Person : MonoBehaviour
 
     public bool isAttracted = false;
     public bool isFree = true;
-    
+
+    public GameObject child;
+
     public float minOnPlayerTime;
     public float maxOnPlayerTime;
     private float OnPlayerTime;
@@ -31,8 +33,6 @@ public class Person : MonoBehaviour
     private float magneticForceMultiplier;
 
 
-    private Animator myAnim;
-
     private void Start()
     {
         MagneticField = GameObject.FindGameObjectWithTag("MagneticField");
@@ -41,11 +41,13 @@ public class Person : MonoBehaviour
         OnPlayerTime = Random.Range(minOnPlayerTime, maxOnPlayerTime);
         OnPlayerTimeMax = OnPlayerTime;
 
-        myAnim = GetComponent<Animator>();
-
+        
         isFree = true;
 
         timer1Max = timer1;
+
+        child.GetComponent<Animator>().SetBool("isFree", true);
+
     }
 
     private void Update()
@@ -67,6 +69,8 @@ public class Person : MonoBehaviour
 
         if(!isFree)
         {
+            child.GetComponent<Animator>().SetBool("isFree", false);
+
             OnPlayerTime -= Time.deltaTime;
 
             if (OnPlayerTime <= 0)
@@ -79,9 +83,9 @@ public class Person : MonoBehaviour
 
         if(isGoingAway)
         {
-            Debug.Log(doneRight);
+            child.GetComponent<Animator>().SetBool("isFree", true);
 
-            if(doneRight)
+            if (doneRight)
             {
                 Vector2 left = new Vector2(6, 0);
                 transform.Translate(-left * 0.05f * Time.deltaTime);
@@ -107,10 +111,6 @@ public class Person : MonoBehaviour
             else
             if(!doneRight)
             {
-                Debug.Log("sono false");
-                Debug.Log("il timer 1 è a: " + timer1);
-                Debug.Log("il timer 2 è a: " + timer2);
-
                 Vector2 right = new Vector2(6, 0);
                 transform.Translate(right * 0.05f * Time.deltaTime);
 
