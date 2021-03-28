@@ -87,8 +87,8 @@ public class Person : MonoBehaviour
 
             if (doneRight)
             {
-                Vector2 left = new Vector2(6, 0);
-                transform.Translate(-left * 0.05f * Time.deltaTime);
+                Vector2 left = new Vector2(-6, 5);
+                transform.Translate(left * 0.05f * Time.deltaTime);
 
                 timer1 -= Time.deltaTime;
                 timer2 -= Time.deltaTime;
@@ -111,7 +111,7 @@ public class Person : MonoBehaviour
             else
             if(!doneRight)
             {
-                Vector2 right = new Vector2(6, 0);
+                Vector2 right = new Vector2(6, 5);
                 transform.Translate(right * 0.05f * Time.deltaTime);
 
                 timer1 -= Time.deltaTime;

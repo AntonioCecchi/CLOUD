@@ -203,8 +203,8 @@ MonoBehaviour:
   isAttracted: 0
   isFree: 0
   child: {fileID: 883535063}
-  minOnPlayerTime: 6
-  maxOnPlayerTime: 10
+  minOnPlayerTime: 10
+  maxOnPlayerTime: 25
   magneticForceMultiplier: 0.35
 --- !u!58 &2004626046284668789
 CircleCollider2D:
