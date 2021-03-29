@@ -75,6 +75,12 @@ public class Player_Physic : MonoBehaviour
             jumpStrenght = jumpStrenghtMax;
         }
 
+        if(canMove)
+        {
+            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+
+            transform.position += movement * Time.deltaTime * moveSpeed;
+        }
 
         #region Movement Mobile
         if (canMove)

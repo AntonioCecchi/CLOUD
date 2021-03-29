@@ -18,7 +18,7 @@ public class Person : MonoBehaviour
     public float maxOnPlayerTime;
     private float OnPlayerTime;
     private float OnPlayerTimeMax;
-
+    private float goAwayChance;
 
     private bool isGoingAway = false;
     private bool doneRight = true;
@@ -71,13 +71,27 @@ public class Person : MonoBehaviour
         {
             child.GetComponent<Animator>().SetBool("isFree", false);
 
-            OnPlayerTime -= Time.deltaTime;
-
-            if (OnPlayerTime <= 0)
+            if(goAwayChance > 0)
             {
-                GoAwayFromPlayer();
+                OnPlayerTime -= Time.deltaTime;
+                
+                if(OnPlayerTime <= 0)
+                {
+                    GoAwayFromPlayer();
 
-                OnPlayerTime = OnPlayerTimeMax;
+                    OnPlayerTime = OnPlayerTimeMax;
+                }
+            }
+            else
+            {
+                OnPlayerTime -= Time.deltaTime;
+
+                if (OnPlayerTime <= 3)
+                {
+                    goAwayChance = Random.Range(-5, 5);
+
+                    OnPlayerTime = OnPlayerTimeMax;
+                }
             }
         }
 
@@ -142,6 +156,12 @@ public class Person : MonoBehaviour
             isAttracted = false;
             isFree = false;
             isGoingAway = false;
+
+            goAwayChance = Random.Range(-5, 5);
+            OnPlayerTime = Random.Range(minOnPlayerTime, maxOnPlayerTime);
+            OnPlayerTimeMax = OnPlayerTime;
+
+            Debug.Log(goAwayChance);
 
             OneMoreChild();
         }
