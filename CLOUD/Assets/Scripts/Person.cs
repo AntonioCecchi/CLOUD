@@ -62,6 +62,8 @@ public class Person : MonoBehaviour
 
             Vector3 dir = (MagneticField.transform.position - transform.position);
 
+            GetComponentInChildren<LineLegame>().drawLine();
+
             transform.position = Vector2.MoveTowards(transform.position, MagneticField.transform.position, magneticForce * Time.deltaTime * magneticForceMultiplier);
 
             Debug.DrawLine(MagneticField.transform.position, MagneticField.transform.position - dir, Color.green);
@@ -71,7 +73,9 @@ public class Person : MonoBehaviour
         {
             child.GetComponent<Animator>().SetBool("isFree", false);
 
-            if(goAwayChance > 0)
+            GetComponentInChildren<LineLegame>().deleteLine();
+
+            if (goAwayChance > 0)
             {
                 OnPlayerTime -= Time.deltaTime;
                 
@@ -98,6 +102,8 @@ public class Person : MonoBehaviour
         if(isGoingAway)
         {
             child.GetComponent<Animator>().SetBool("isFree", true);
+
+            GetComponentInChildren<LineLegame>().drawLine();
 
             if (doneRight)
             {

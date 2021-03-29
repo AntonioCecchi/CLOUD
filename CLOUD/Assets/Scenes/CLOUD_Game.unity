@@ -859,6 +859,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 4.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 5975
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime2
+      value: 59560
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.38039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.key3.a
+      value: 0.39607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141562673, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_NumAlphaKeys
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010986483325299852, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 59967871}
     - target: {fileID: 2004626046284668782, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
       propertyPath: m_Name
       value: Person (1)
