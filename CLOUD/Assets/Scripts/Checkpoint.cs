@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
 
     private bool playerIsTriggering;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void Update()
     {

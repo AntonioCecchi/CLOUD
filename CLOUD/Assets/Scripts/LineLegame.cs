@@ -5,7 +5,7 @@ using UnityEngine;
 public class LineLegame : MonoBehaviour
 {
 
-    public GameObject player;
+    private GameObject player;
     public GameObject person;
 
     private LineRenderer myLine;
@@ -13,6 +13,8 @@ public class LineLegame : MonoBehaviour
     private void Start()
     {
         myLine = GetComponent<LineRenderer>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void drawLine()

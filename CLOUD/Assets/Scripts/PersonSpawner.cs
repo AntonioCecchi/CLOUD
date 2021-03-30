@@ -7,9 +7,6 @@ public class PersonSpawner : MonoBehaviour
 {
     public GameObject person;
 
-    public GameObject leftSpawn;
-    public GameObject rightSpawn;
-
     public GameObject player;
 
     public float spawnTime;
@@ -45,16 +42,6 @@ public class PersonSpawner : MonoBehaviour
 
     private void SpawnPerson()
     {
-        float randomChance = UnityEngine.Random.Range(0.0f, 1.0f);
-
-        if (randomChance <= 0.5)
-        {
-            Instantiate(person, leftSpawn.transform.position, Quaternion.identity);
-
-        }
-        else
-        {
-            Instantiate(person, rightSpawn.transform.position, Quaternion.identity);
-        }
+        Instantiate(person, transform.position, Quaternion.identity);
     }
 }

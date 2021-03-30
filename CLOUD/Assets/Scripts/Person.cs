@@ -68,6 +68,10 @@ public class Person : MonoBehaviour
 
             Debug.DrawLine(MagneticField.transform.position, MagneticField.transform.position - dir, Color.green);
         }
+        else
+        {
+            GetComponentInChildren<LineLegame>().deleteLine();
+        }
 
         if(!isFree)
         {
