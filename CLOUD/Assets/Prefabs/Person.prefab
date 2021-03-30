@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   person: {fileID: 2004626046284668782}
+  ParticleLegameRotto: {fileID: 1017088384256274232}
 --- !u!1 &2004626046284668782
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +279,7 @@ Transform:
   m_Children:
   - {fileID: 883535064}
   - {fileID: 2141562672}
+  - {fileID: 1017088384256274239}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -344,11 +346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66891a8176a11304fa11654e9ef1eaf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAttracted: 0
-  isFree: 0
   child: {fileID: 883535063}
   minOnPlayerTime: 10
   maxOnPlayerTime: 20
+  isAttracted: 0
+  isFree: 0
   magneticForceMultiplier: 0.35
 --- !u!58 &2004626046284668789
 CircleCollider2D:
@@ -382,3 +384,78 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.20010853
+--- !u!1001 &2666583659916184860
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2004626046284668787}
+    m_Modifications:
+    - target: {fileID: 3106630293389255202, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255202, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: ShapeModule.m_Rotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106630293389255204, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+      propertyPath: m_Name
+      value: ParticleLegameRotto
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+--- !u!1 &1017088384256274232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3106630293389255204, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+  m_PrefabInstance: {fileID: 2666583659916184860}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1017088384256274239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3106630293389255203, guid: e2d82b11ef024ba47876d9b700b887f3, type: 3}
+  m_PrefabInstance: {fileID: 2666583659916184860}
+  m_PrefabAsset: {fileID: 0}

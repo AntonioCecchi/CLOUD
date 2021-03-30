@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
+    #region GameObj
     private GameObject MagneticField;
     private GameObject playerChildrenManager;
 
     private GameObject [] playerCMChildren;
 
-    public bool isAttracted = false;
-    public bool isFree = true;
-
     public GameObject child;
 
+
+    #endregion
+
+    #region onPlayerVar
     public float minOnPlayerTime;
     public float maxOnPlayerTime;
     private float OnPlayerTime;
@@ -22,6 +24,10 @@ public class Person : MonoBehaviour
 
     private bool isGoingAway = false;
     private bool doneRight = true;
+    #endregion
+
+    public bool isAttracted = false;
+    public bool isFree = true;
 
     private float timer1 = 1;
     private float timer1Max = 1;
@@ -31,7 +37,6 @@ public class Person : MonoBehaviour
     [SerializeField]
     [Range(0, 5)]
     private float magneticForceMultiplier;
-
 
     private void Start()
     {
