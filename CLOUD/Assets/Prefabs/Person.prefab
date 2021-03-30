@@ -244,7 +244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc9b80fdf3279dc4eb96617365df8b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2609947995044432621, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
   person: {fileID: 2004626046284668782}
 --- !u!1 &2004626046284668782
 GameObject:
@@ -349,7 +348,7 @@ MonoBehaviour:
   isFree: 0
   child: {fileID: 883535063}
   minOnPlayerTime: 10
-  maxOnPlayerTime: 25
+  maxOnPlayerTime: 20
   magneticForceMultiplier: 0.35
 --- !u!58 &2004626046284668789
 CircleCollider2D:

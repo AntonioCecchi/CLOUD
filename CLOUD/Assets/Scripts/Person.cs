@@ -52,6 +52,7 @@ public class Person : MonoBehaviour
 
     private void Update()
     {
+
         if(isAttracted) //Quando sono nel raggio di azione vado verso il Player
         {
             float triggerRadius = MagneticField.GetComponent<CircleCollider2D>().radius;
@@ -62,24 +63,17 @@ public class Person : MonoBehaviour
 
             Vector3 dir = (MagneticField.transform.position - transform.position);
 
-            GetComponentInChildren<LineLegame>().drawLine();
 
             transform.position = Vector2.MoveTowards(transform.position, MagneticField.transform.position, magneticForce * Time.deltaTime * magneticForceMultiplier);
 
             Debug.DrawLine(MagneticField.transform.position, MagneticField.transform.position - dir, Color.green);
-        }
-        else
-        {
-            GetComponentInChildren<LineLegame>().deleteLine();
         }
 
         if(!isFree)
         {
             child.GetComponent<Animator>().SetBool("isFree", false);
 
-            GetComponentInChildren<LineLegame>().deleteLine();
-
-            if (goAwayChance > 0)
+            if (goAwayChance > -2)
             {
                 OnPlayerTime -= Time.deltaTime;
                 
@@ -106,8 +100,6 @@ public class Person : MonoBehaviour
         if(isGoingAway)
         {
             child.GetComponent<Animator>().SetBool("isFree", true);
-
-            GetComponentInChildren<LineLegame>().drawLine();
 
             if (doneRight)
             {
@@ -183,11 +175,13 @@ public class Person : MonoBehaviour
         if(other.tag == "MagneticField" && !isGoingAway)
         {
             isAttracted = true;
+
+            GetComponentInChildren<LineLegame>().drawLine();
         }
         else
         if(other.tag == "MagneticField" && isGoingAway)
         {
-
+            GetComponentInChildren<LineLegame>().drawLine();
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -195,6 +189,8 @@ public class Person : MonoBehaviour
         if(other.tag == "MagneticField")
         {
             isAttracted = false;
+
+            GetComponentInChildren<LineLegame>().deleteLine();
         }
     }
     #endregion
@@ -223,4 +219,5 @@ public class Person : MonoBehaviour
             }
         }
     }
+
 }
