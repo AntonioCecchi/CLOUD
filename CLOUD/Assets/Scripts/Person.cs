@@ -195,7 +195,14 @@ public class Person : MonoBehaviour
         {
             isAttracted = false;
 
-            GetComponentInChildren<LineLegame>().deleteLine();
+            if(isFree)
+            {
+                GetComponentInChildren<LineLegame>().deleteLine();
+            }
+            else
+            {
+                GetComponentInChildren<LineRenderer>().enabled = false;
+            }
         }
     }
     #endregion
@@ -207,8 +214,6 @@ public class Person : MonoBehaviour
         isGoingAway = true;
         isFree = true;
         gameObject.transform.parent = null;
-
-        Debug.Log(isGoingAway);
     }
 
     public void OneMoreChild()
