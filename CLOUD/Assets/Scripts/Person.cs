@@ -34,6 +34,14 @@ public class Person : MonoBehaviour
     private float timer2 = 5;
     private float timer2Max = 5;
 
+    #region WanderingVar
+    private bool moveRight;
+    private bool moveLeft;
+
+    public float wanderingSpeed;
+    #endregion
+
+
     [SerializeField]
     [Range(0, 5)]
     private float magneticForceMultiplier;
@@ -57,6 +65,45 @@ public class Person : MonoBehaviour
 
     private void Update()
     {
+
+        if(isFree && !isAttracted && !isGoingAway)
+        {
+            if (transform.position.x >= 4.5)
+            {
+                moveRight = false;
+                moveLeft = true;
+            }
+            else
+            if(transform.position.x <= -4.5)
+            {
+                moveRight = true;
+                moveLeft = false;
+            }
+
+            if(moveRight)
+            {
+                transform.Translate(Vector2.right * wanderingSpeed * Time.deltaTime);
+            }
+            else
+            if(moveLeft)
+            {
+                transform.Translate(Vector2.left * wanderingSpeed * Time.deltaTime);
+            }
+            else
+            {
+                float randomChance = Random.Range(0, 1);
+
+                if(randomChance <= 0.5f)
+                {
+                    transform.Translate(Vector2.left * wanderingSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.Translate(Vector2.right * wanderingSpeed * Time.deltaTime);
+                }
+            }
+        } //wandering function
+
 
         if(isAttracted) //Quando sono nel raggio di azione vado verso il Player
         {
@@ -100,7 +147,7 @@ public class Person : MonoBehaviour
                     OnPlayerTime = OnPlayerTimeMax;
                 }
             }
-        }
+        } //quando person è figlia del player
 
         if(isGoingAway)
         {
@@ -153,7 +200,7 @@ public class Person : MonoBehaviour
                     timer2 = timer2Max;
                 }
             }
-        }
+        } //quando person si stacca dal player
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -172,7 +219,7 @@ public class Person : MonoBehaviour
 
             OneMoreChild();
         }
-    }
+    } //quando person tocca player
 
     #region Magnetism
     private void OnTriggerStay2D(Collider2D other)
@@ -188,7 +235,7 @@ public class Person : MonoBehaviour
         {
             GetComponentInChildren<LineLegame>().drawLine();
         }
-    }
+    } //magnetismo player su person
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.tag == "MagneticField")
@@ -204,7 +251,7 @@ public class Person : MonoBehaviour
                 GetComponentInChildren<LineRenderer>().enabled = false;
             }
         }
-    }
+    } //magnetismo player su person
     #endregion
 
     private void GoAwayFromPlayer()
@@ -214,7 +261,7 @@ public class Person : MonoBehaviour
         isGoingAway = true;
         isFree = true;
         gameObject.transform.parent = null;
-    }
+    } //persona si stacca da player
 
     public void OneMoreChild()
     {
@@ -228,6 +275,6 @@ public class Person : MonoBehaviour
                 gameObject.transform.position = playerChild.transform.position;
             }
         }
-    }
+    } //un figlio si aggiunge al Player
 
 }
