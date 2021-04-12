@@ -88,8 +88,6 @@ public class Player_Physic : MonoBehaviour
             dirX = Input.acceleration.x * moveSpeed;
             transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
 
-            Debug.Log(dirX);
-
             if(dirX > 0 && dirX < 0.1)
             {
                 

@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class PlayerGraphics : MonoBehaviour
 {
-    public Sprite canJump;
-    public Sprite cannotJump;
-
     public GameObject player;
-    public GameObject charGraphics;
+    public GameObject CharFill;
+    public GameObject CharBorder;
+
+    public Sprite[] growingSprites;
+    
 
     void Start()
     {
-        
+        CharBorder.GetComponent<SpriteRenderer>().sprite = growingSprites[8];
     }
 
     void Update()
     {
-        if(player.GetComponent<Player_Physic>().canJump == true)
+        if (player.GetComponent<Player_Physic>().canJump == true)
         {
-            charGraphics.GetComponent<SpriteRenderer>().sprite = canJump;
+            CharFill.SetActive(true);
         }
         else
         if(player.GetComponent<Player_Physic>().canJump == false)
         {
-            charGraphics.GetComponent<SpriteRenderer>().sprite = cannotJump;
+            CharFill.SetActive(false);
 
         }
     }

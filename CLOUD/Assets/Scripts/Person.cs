@@ -215,8 +215,6 @@ public class Person : MonoBehaviour
             OnPlayerTime = Random.Range(minOnPlayerTime, maxOnPlayerTime);
             OnPlayerTimeMax = OnPlayerTime;
 
-            Debug.Log(goAwayChance);
-
             OneMoreChild();
         }
     } //quando person tocca player
