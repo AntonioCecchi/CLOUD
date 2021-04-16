@@ -168,6 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 909678531}
+  - component: {fileID: 8822976698984186837}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -191,6 +192,22 @@ Transform:
   m_Father: {fileID: 2609947995044432623}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8822976698984186837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909678530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e795ca5d502f44e42a965bf515c4c4c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2609947995044432621}
+  CharFill: {fileID: 2008253489}
+  CharBorder: {fileID: 464864718}
+  growingSprites: []
 --- !u!1 &923006980
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,15 +493,16 @@ MonoBehaviour:
   jumpStrenghtMax: 6
   totalChildrenNumber: 0
   scaleChanges:
-  - {x: 1, y: 1}
-  - {x: 1.25, y: 1.25}
-  - {x: 1.5, y: 1.5}
-  - {x: 1.75, y: 1.75}
-  - {x: 2, y: 2}
-  - {x: 2.25, y: 2.25}
-  - {x: 2.5, y: 2.5}
-  - {x: 2.75, y: 2.75}
-  - {x: 3, y: 3}
+  - 1
+  - 1.5
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  - 4
+  - 4.5
+  - 5
+  growingSpeed: 0.1
 --- !u!95 &1121728922479601907
 Animator:
   serializedVersion: 3

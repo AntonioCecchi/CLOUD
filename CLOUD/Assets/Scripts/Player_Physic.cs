@@ -46,10 +46,10 @@ public class Player_Physic : MonoBehaviour
 
     #endregion
 
-    public Vector2[] scaleChanges;
+    public float[] scaleChanges;
     private GameObject graphics;
-
-
+    [Space (10)]
+    public float growingSpeed;
 
     void Start()
     {
@@ -158,31 +158,86 @@ public class Player_Physic : MonoBehaviour
         switch(totalChildrenNumber)
         {
             case 0:
-                graphics.transform.localScale = scaleChanges[0];
+                float newScale0 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[0], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale0, newScale0);
+
+                if (graphics.transform.localScale.x > scaleChanges[0] + 0.1f)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[0], scaleChanges[0]);
+                }
+                //da concludere con aggiunta figlio del player nell'array 
                 break;
             case 1:
-                graphics.transform.localScale = scaleChanges[1];
+                float newScale1 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[1], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale1, newScale1);
+
+                if(graphics.transform.localScale.x > scaleChanges[1] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[1], scaleChanges[1]);
+                }
                 break;
             case 2:
-                graphics.transform.localScale = scaleChanges[2];
+                float newScale2 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[2], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale2, newScale2);
+
+                if (graphics.transform.localScale.x > scaleChanges[2] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[2], scaleChanges[2]);
+                }
                 break;
             case 3:
-                graphics.transform.localScale = scaleChanges[3];
+                float newScale3 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[3], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale3, newScale3);
+
+                if (graphics.transform.localScale.x > scaleChanges[3] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[3], scaleChanges[3]);
+                }
                 break;
             case 4:
-                graphics.transform.localScale = scaleChanges[4];
+                float newScale4 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[4], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale4, newScale4);
+
+                if (graphics.transform.localScale.x > scaleChanges[4] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[4], scaleChanges[4]);
+                }
                 break;
             case 5:
-                graphics.transform.localScale = scaleChanges[5];
+                float newScale5 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[5], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale5, newScale5);
+
+                if (graphics.transform.localScale.x > scaleChanges[5] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[5], scaleChanges[5]);
+                }
                 break;
             case 6:
-                graphics.transform.localScale = scaleChanges[6];
+                float newScale6 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[6], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale6, newScale6);
+
+                if (graphics.transform.localScale.x > scaleChanges[6] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[6], scaleChanges[6]);
+                }
                 break;
             case 7:
-                graphics.transform.localScale = scaleChanges[7];
+                float newScale7 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[7], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale7, newScale7);
+
+                if (graphics.transform.localScale.x > scaleChanges[7] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[7], scaleChanges[7]);
+                }
                 break;
             case 8:
-                graphics.transform.localScale = scaleChanges[8];
+                float newScale8 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[8], Time.deltaTime * growingSpeed);
+                graphics.transform.localScale = new Vector2(newScale8, newScale8);
+                
+                if (graphics.transform.localScale.x > scaleChanges[8] - 0.1)
+                {
+                    graphics.transform.localScale = new Vector2(scaleChanges[8], scaleChanges[8]);
+                }
                 break;
         }
         #endregion

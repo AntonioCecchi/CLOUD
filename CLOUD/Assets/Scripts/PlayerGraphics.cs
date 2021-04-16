@@ -13,7 +13,7 @@ public class PlayerGraphics : MonoBehaviour
 
     void Start()
     {
-        CharBorder.GetComponent<SpriteRenderer>().sprite = growingSprites[8];
+        //CharBorder.GetComponent<SpriteRenderer>().sprite = growingSprites[8];
     }
 
     void Update()
