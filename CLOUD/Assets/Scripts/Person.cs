@@ -41,6 +41,8 @@ public class Person : MonoBehaviour
     public float wanderingSpeed;
     #endregion
 
+    Vector2 scaleChange = new Vector2(1.25f, 1.25f);
+    Vector2 scaleDefault = new Vector2(1, 1);
 
     [SerializeField]
     [Range(0, 5)]
@@ -65,6 +67,15 @@ public class Person : MonoBehaviour
 
     private void Update()
     {
+        if(!isFree)
+        {
+            transform.localScale = scaleChange;
+        }
+        else
+        if(isFree)
+        {
+            transform.localScale = scaleDefault;
+        }
 
         if (isFree && !isAttracted && !isGoingAway)
         {
