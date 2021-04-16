@@ -8,7 +8,7 @@ public class Person : MonoBehaviour
     private GameObject MagneticField;
     private GameObject playerChildrenManager;
 
-    private GameObject [] playerCMChildren;
+    private GameObject[] playerCMChildren;
 
     public GameObject child;
 
@@ -54,7 +54,7 @@ public class Person : MonoBehaviour
         OnPlayerTime = Random.Range(minOnPlayerTime, maxOnPlayerTime);
         OnPlayerTimeMax = OnPlayerTime;
 
-        
+
         isFree = true;
 
         timer1Max = timer1;
@@ -66,7 +66,7 @@ public class Person : MonoBehaviour
     private void Update()
     {
 
-        if(isFree && !isAttracted && !isGoingAway)
+        if (isFree && !isAttracted && !isGoingAway)
         {
             if (transform.position.x >= 4.5)
             {
@@ -74,18 +74,18 @@ public class Person : MonoBehaviour
                 moveLeft = true;
             }
             else
-            if(transform.position.x <= -4.5)
+            if (transform.position.x <= -4.5)
             {
                 moveRight = true;
                 moveLeft = false;
             }
 
-            if(moveRight)
+            if (moveRight)
             {
                 transform.Translate(Vector2.right * wanderingSpeed * Time.deltaTime);
             }
             else
-            if(moveLeft)
+            if (moveLeft)
             {
                 transform.Translate(Vector2.left * wanderingSpeed * Time.deltaTime);
             }
@@ -93,7 +93,7 @@ public class Person : MonoBehaviour
             {
                 float randomChance = Random.Range(0, 1);
 
-                if(randomChance <= 0.5f)
+                if (randomChance <= 0.5f)
                 {
                     transform.Translate(Vector2.left * wanderingSpeed * Time.deltaTime);
                 }
@@ -102,10 +102,9 @@ public class Person : MonoBehaviour
                     transform.Translate(Vector2.right * wanderingSpeed * Time.deltaTime);
                 }
             }
-        } //wandering function
+        }
 
-
-        if(isAttracted) //Quando sono nel raggio di azione vado verso il Player
+        if (isAttracted) //Quando sono nel raggio di azione vado verso il Player
         {
             float triggerRadius = MagneticField.GetComponent<CircleCollider2D>().radius;
             float scaleObj = MagneticField.GetComponent<Transform>().localScale.x;
@@ -121,91 +120,96 @@ public class Person : MonoBehaviour
             Debug.DrawLine(MagneticField.transform.position, MagneticField.transform.position - dir, Color.green);
         }
 
-        if(!isFree)
+        if (!isFree)
         {
             child.GetComponent<Animator>().SetBool("isFree", false);
 
-            if (goAwayChance > -2)
-            {
-                OnPlayerTime -= Time.deltaTime;
-                
-                if(OnPlayerTime <= 0)
-                {
-                    GoAwayFromPlayer();
+            #region random chance person go away from player
+            //if (goAwayChance > -2)
+            //{
+            //    OnPlayerTime -= Time.deltaTime;
 
-                    OnPlayerTime = OnPlayerTimeMax;
-                }
-            }
-            else
-            {
-                OnPlayerTime -= Time.deltaTime;
+            //    if (OnPlayerTime <= 0)
+            //    {
+            //        GoAwayFromPlayer();
 
-                if (OnPlayerTime <= 3)
-                {
-                    goAwayChance = Random.Range(-5, 5);
+            //        OnPlayerTime = OnPlayerTimeMax;
+            //    }
+            //}
+            //else
+            //{
+            //    OnPlayerTime -= Time.deltaTime;
 
-                    OnPlayerTime = OnPlayerTimeMax;
-                }
-            }
-        } //quando person è figlia del player
+            //    if (OnPlayerTime <= 3)
+            //    {
+            //        goAwayChance = Random.Range(-5, 5);
 
-        if(isGoingAway)
+            //        OnPlayerTime = OnPlayerTimeMax;
+            //    }
+            //}
+            #endregion
+
+        } 
+
+        if (isGoingAway)
         {
             child.GetComponent<Animator>().SetBool("isFree", true);
 
-            if (doneRight)
-            {
-                Vector2 left = new Vector2(-6, 5);
-                transform.Translate(left * 0.05f * Time.deltaTime);
+            #region old isgoingaway
+            //if (doneRight)
+            //{
+            //    Vector2 left = new Vector2(-6, 5);
+            //    transform.Translate(left * 0.05f * Time.deltaTime);
 
-                timer1 -= Time.deltaTime;
-                timer2 -= Time.deltaTime;
+            //    timer1 -= Time.deltaTime;
+            //    timer2 -= Time.deltaTime;
 
-                if (timer1 <= 0)
-                {
-                    GetComponent<CircleCollider2D>().enabled = true;
+            //    if (timer1 <= 0)
+            //    {
+            //        GetComponent<CircleCollider2D>().enabled = true;
 
-                    timer1 = timer1Max;
-                }
+            //        timer1 = timer1Max;
+            //    }
 
-                if(timer2 <=0)
-                {
-                    isGoingAway = false;
-                    timer2 = timer2Max;
+            //    if (timer2 <= 0)
+            //    {
+            //        isGoingAway = false;
+            //        timer2 = timer2Max;
 
-                    doneRight = false;
-                }
-            }
-            else
-            if(!doneRight)
-            {
-                Vector2 right = new Vector2(6, 5);
-                transform.Translate(right * 0.05f * Time.deltaTime);
+            //        doneRight = false;
+            //    }
+            //}
+            //else
+            //if (!doneRight)
+            //{
+            //    Vector2 right = new Vector2(6, 5);
+            //    transform.Translate(right * 0.05f * Time.deltaTime);
 
-                timer1 -= Time.deltaTime;
-                timer2 -= Time.deltaTime;
+            //    timer1 -= Time.deltaTime;
+            //    timer2 -= Time.deltaTime;
 
-                if (timer1 <= 0)
-                {
-                    GetComponent<CircleCollider2D>().enabled = true;
+            //    if (timer1 <= 0)
+            //    {
+            //        GetComponent<CircleCollider2D>().enabled = true;
 
-                    timer1 = timer1Max;
-                }
+            //        timer1 = timer1Max;
+            //    }
 
-                if (timer2 <= 0)
-                {
-                    isGoingAway = false;
-                    doneRight = false;
+            //    if (timer2 <= 0)
+            //    {
+            //        isGoingAway = false;
+            //        doneRight = false;
 
-                    timer2 = timer2Max;
-                }
-            }
-        } //quando person si stacca dal player
+            //        timer2 = timer2Max;
+            //    }
+            //}
+            #endregion
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             isAttracted = false;
             isFree = false;
@@ -222,25 +226,25 @@ public class Person : MonoBehaviour
     #region Magnetism
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag == "MagneticField" && !isGoingAway)
+        if (other.tag == "MagneticField" && !isGoingAway)
         {
             isAttracted = true;
 
             GetComponentInChildren<LineLegame>().drawLine();
         }
         else
-        if(other.tag == "MagneticField" && isGoingAway)
+        if (other.tag == "MagneticField" && isGoingAway)
         {
             GetComponentInChildren<LineLegame>().drawLine();
         }
     } //magnetismo player su person
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "MagneticField")
+        if (other.tag == "MagneticField")
         {
             isAttracted = false;
 
-            if(isFree)
+            if (isFree)
             {
                 GetComponentInChildren<LineLegame>().deleteLine();
             }
@@ -268,7 +272,7 @@ public class Person : MonoBehaviour
         foreach (GameObject playerChild in playerCMChildren) //per ogni figlio del player children manager cerca quello vuoto e assegnali a lui il parent della persona
         {
             if (playerChild.transform.childCount == 0) //se non ci sono persone attaccate
-            {                
+            {
                 gameObject.transform.parent = playerChild.transform; //assegnazione parent persona -> attacca la persona al figlio del player
                 gameObject.transform.position = playerChild.transform.position;
             }

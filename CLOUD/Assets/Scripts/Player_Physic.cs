@@ -46,6 +46,10 @@ public class Player_Physic : MonoBehaviour
 
     #endregion
 
+    public Vector2[] scaleChanges;
+    private GameObject graphics;
+
+
 
     void Start()
     {
@@ -60,6 +64,9 @@ public class Player_Physic : MonoBehaviour
         sixth = ChildrenManager.transform.GetChild(5).gameObject;
         seventh = ChildrenManager.transform.GetChild(6).gameObject;
         eighth = ChildrenManager.transform.GetChild(7).gameObject;
+
+
+        graphics = transform.GetChild(4).gameObject;
 
     }
 
@@ -144,6 +151,39 @@ public class Player_Physic : MonoBehaviour
         if (Input.touchCount > 0 && canJump == true || Input.GetKeyDown(KeyCode.Space) && canJump == true) //da fixare il poter tener premuto
         {
             Jump();
+        }
+        #endregion
+
+        #region scale feedback
+        switch(totalChildrenNumber)
+        {
+            case 0:
+                graphics.transform.localScale = scaleChanges[0];
+                break;
+            case 1:
+                graphics.transform.localScale = scaleChanges[1];
+                break;
+            case 2:
+                graphics.transform.localScale = scaleChanges[2];
+                break;
+            case 3:
+                graphics.transform.localScale = scaleChanges[3];
+                break;
+            case 4:
+                graphics.transform.localScale = scaleChanges[4];
+                break;
+            case 5:
+                graphics.transform.localScale = scaleChanges[5];
+                break;
+            case 6:
+                graphics.transform.localScale = scaleChanges[6];
+                break;
+            case 7:
+                graphics.transform.localScale = scaleChanges[7];
+                break;
+            case 8:
+                graphics.transform.localScale = scaleChanges[8];
+                break;
         }
         #endregion
 

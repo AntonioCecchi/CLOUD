@@ -16,7 +16,7 @@ public class GrowingTrigger : MonoBehaviour
 
     private void Start()
     {
-        growingSpritesSteps = playerGraphics.GetComponent<PlayerGraphics>().growingSprites;
+        //growingSpritesSteps = playerGraphics.GetComponent<PlayerGraphics>().growingSprites;
     }
 
 
