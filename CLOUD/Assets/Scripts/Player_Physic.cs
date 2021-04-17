@@ -42,7 +42,7 @@ public class Player_Physic : MonoBehaviour
     private GameObject seventh;
     private GameObject eighth;
 
-    public float totalChildrenNumber;
+    public int totalChildrenNumber;
 
     #endregion
 
@@ -50,6 +50,7 @@ public class Player_Physic : MonoBehaviour
     private GameObject graphics;
     [Space (10)]
     public float growingSpeed;
+    GameObject[] persons;
 
     void Start()
     {
@@ -72,6 +73,8 @@ public class Player_Physic : MonoBehaviour
 
     void Update()
     {
+        persons = GameObject.FindGameObjectsWithTag("Person");
+
         myRb.AddForce(new Vector2(0f, -gravityStrenght), ForceMode2D.Force);
 
         totalChildrenNumber = first.transform.childCount + second.transform.childCount + third.transform.childCount + fourth.transform.childCount + fifth.transform.childCount + sixth.transform.childCount + seventh.transform.childCount + eighth.transform.childCount; //quante persone attaccate in totale al player (conta anche le persone attaccate alle altre persone)
@@ -155,6 +158,24 @@ public class Player_Physic : MonoBehaviour
         #endregion
 
         #region scale feedback
+
+        if(graphics.transform.localScale.x == scaleChanges[totalChildrenNumber])
+        {
+            foreach (GameObject Person in persons)
+            {
+                Person.GetComponent<CircleCollider2D>().enabled = true;
+                Person.GetComponent<BoxCollider2D>().enabled = true;
+            }
+        }
+        else
+        {
+            foreach (GameObject Person in persons)
+            {
+                Person.GetComponent<CircleCollider2D>().enabled = false;
+                Person.GetComponent<BoxCollider2D>().enabled = false;
+            }
+        }
+
         switch(totalChildrenNumber)
         {
             case 0:
@@ -243,6 +264,7 @@ public class Player_Physic : MonoBehaviour
         #endregion
 
     }
+
 
     public void Jump()
     {
