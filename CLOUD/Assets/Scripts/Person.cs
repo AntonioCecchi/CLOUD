@@ -41,8 +41,10 @@ public class Person : MonoBehaviour
     public float wanderingSpeed;
     #endregion
 
-    Vector2 scaleChange = new Vector2(1.25f, 1.25f);
+    float scaleChange = 1.25f;
     Vector2 scaleDefault = new Vector2(1, 1);
+
+    private Animator fillAnimator;
 
     [SerializeField]
     [Range(0, 5)]
@@ -61,7 +63,7 @@ public class Person : MonoBehaviour
 
         timer1Max = timer1;
 
-        child.GetComponent<Animator>().SetBool("isFree", true);
+        fillAnimator = transform.GetChild(0).GetComponent<Animator>();
 
     }
 
@@ -69,12 +71,15 @@ public class Person : MonoBehaviour
     {
         if(!isFree)
         {
-            transform.localScale = scaleChange;
+            float newScale = Mathf.Lerp(transform.localScale.x, scaleChange, Time.deltaTime * 0.1f);
+            transform.localScale = new Vector2(newScale, newScale);
+            fillAnimator.SetBool("isGrowing", true);
         }
         else
         if(isFree)
         {
             transform.localScale = scaleDefault;
+            fillAnimator.SetBool("isGrowing", true);
         }
 
         if (isFree && !isAttracted && !isGoingAway)
@@ -133,8 +138,6 @@ public class Person : MonoBehaviour
 
         if (!isFree)
         {
-            child.GetComponent<Animator>().SetBool("isFree", false);
-
             #region random chance person go away from player
             //if (goAwayChance > -2)
             //{
@@ -164,8 +167,6 @@ public class Person : MonoBehaviour
 
         if (isGoingAway)
         {
-            child.GetComponent<Animator>().SetBool("isFree", true);
-
             #region old isgoingaway
             //if (doneRight)
             //{

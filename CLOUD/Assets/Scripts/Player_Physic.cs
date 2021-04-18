@@ -52,6 +52,9 @@ public class Player_Physic : MonoBehaviour
     public float growingSpeed;
     GameObject[] persons;
 
+    private Animator myAnim;
+
+
     void Start()
     {
         myRb = gameObject.GetComponent<Rigidbody2D>();
@@ -68,7 +71,8 @@ public class Player_Physic : MonoBehaviour
 
 
         graphics = transform.GetChild(4).gameObject;
-
+        
+        myAnim = GetComponent<Animator>();
     }
 
     void Update()
@@ -117,9 +121,7 @@ public class Player_Physic : MonoBehaviour
         }
         #endregion
 
-
         #region Jump
-        
 
         jumpStrenght = jumpStrenght + (totalChildrenNumber / 2);
 
@@ -165,6 +167,7 @@ public class Player_Physic : MonoBehaviour
             {
                 Person.GetComponent<CircleCollider2D>().enabled = true;
                 Person.GetComponent<BoxCollider2D>().enabled = true;
+                myAnim.SetBool("isGrowing", false);
             }
         }
         else
@@ -173,6 +176,7 @@ public class Player_Physic : MonoBehaviour
             {
                 Person.GetComponent<CircleCollider2D>().enabled = false;
                 Person.GetComponent<BoxCollider2D>().enabled = false;
+                myAnim.SetBool("isGrowing", true);
             }
         }
 
@@ -186,7 +190,6 @@ public class Player_Physic : MonoBehaviour
                 {
                     graphics.transform.localScale = new Vector2(scaleChanges[0], scaleChanges[0]);
                 }
-                //da concludere con aggiunta figlio del player nell'array 
                 break;
             case 1:
                 float newScale1 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[1], Time.deltaTime * growingSpeed);
@@ -270,7 +273,6 @@ public class Player_Physic : MonoBehaviour
     {
         Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
 
-        //myRb.constraints = RigidbodyConstraints2D.None;
         myRb.velocity = Vector2.up * jumpStrenght;
 
     }
