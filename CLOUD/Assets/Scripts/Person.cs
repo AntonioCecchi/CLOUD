@@ -22,7 +22,7 @@ public class Person : MonoBehaviour
     private float OnPlayerTimeMax;
     private float goAwayChance;
 
-    private bool isGoingAway = false;
+    public bool isGoingAway = false;
     private bool doneRight = true;
     #endregion
 
@@ -50,6 +50,7 @@ public class Person : MonoBehaviour
     [Range(0, 5)]
     private float magneticForceMultiplier;
 
+
     private void Start()
     {
         MagneticField = GameObject.FindGameObjectWithTag("MagneticField");
@@ -57,7 +58,6 @@ public class Person : MonoBehaviour
 
         OnPlayerTime = Random.Range(minOnPlayerTime, maxOnPlayerTime);
         OnPlayerTimeMax = OnPlayerTime;
-
 
         isFree = true;
 
@@ -71,6 +71,7 @@ public class Person : MonoBehaviour
     {
         if(!isFree)
         {
+            gameObject.layer = 8;
             float newScale = Mathf.Lerp(transform.localScale.x, scaleChange, Time.deltaTime * 0.1f);
             transform.localScale = new Vector2(newScale, newScale);
             fillAnimator.SetBool("isGrowing", true);
@@ -78,6 +79,7 @@ public class Person : MonoBehaviour
         else
         if(isFree)
         {
+            gameObject.layer = 0;
             transform.localScale = scaleDefault;
             fillAnimator.SetBool("isGrowing", true);
         }
@@ -120,7 +122,7 @@ public class Person : MonoBehaviour
             }
         }
 
-        if (isAttracted) //Quando sono nel raggio di azione vado verso il Player
+        if (isAttracted && GetComponent<BoxCollider2D>().enabled == true) 
         {
             float triggerRadius = MagneticField.GetComponent<CircleCollider2D>().radius;
             float scaleObj = MagneticField.GetComponent<Transform>().localScale.x;
@@ -136,86 +138,53 @@ public class Person : MonoBehaviour
             Debug.DrawLine(MagneticField.transform.position, MagneticField.transform.position - dir, Color.green);
         }
 
-        if (!isFree)
-        {
-            #region random chance person go away from player
-            //if (goAwayChance > -2)
-            //{
-            //    OnPlayerTime -= Time.deltaTime;
-
-            //    if (OnPlayerTime <= 0)
-            //    {
-            //        GoAwayFromPlayer();
-
-            //        OnPlayerTime = OnPlayerTimeMax;
-            //    }
-            //}
-            //else
-            //{
-            //    OnPlayerTime -= Time.deltaTime;
-
-            //    if (OnPlayerTime <= 3)
-            //    {
-            //        goAwayChance = Random.Range(-5, 5);
-
-            //        OnPlayerTime = OnPlayerTimeMax;
-            //    }
-            //}
-            #endregion
-
-        } 
-
         if (isGoingAway)
         {
-            #region old isgoingaway
-            //if (doneRight)
-            //{
-            //    Vector2 left = new Vector2(-6, 5);
-            //    transform.Translate(left * 0.05f * Time.deltaTime);
+            if (doneRight)
+            {
+                Vector2 left = new Vector2(-6, 5);
+                transform.Translate(left * 0.05f * Time.deltaTime);
 
-            //    timer1 -= Time.deltaTime;
-            //    timer2 -= Time.deltaTime;
+                timer1 -= Time.deltaTime;
+                timer2 -= Time.deltaTime;
 
-            //    if (timer1 <= 0)
-            //    {
-            //        GetComponent<CircleCollider2D>().enabled = true;
+                if (timer1 <= 0)
+                {
+                    GetComponent<CircleCollider2D>().enabled = true;
+                    isFree = true;
+                }
 
-            //        timer1 = timer1Max;
-            //    }
+                if (timer2 <= 0)
+                {
+                    isGoingAway = false;
+                    timer2 = timer2Max;
+                    timer1 = timer1Max;
+                    doneRight = false;
+                }
+            }
+            else
+            if (!doneRight)
+            {
+                Vector2 right = new Vector2(6, 5);
+                transform.Translate(right * 0.05f * Time.deltaTime);
 
-            //    if (timer2 <= 0)
-            //    {
-            //        isGoingAway = false;
-            //        timer2 = timer2Max;
+                timer1 -= Time.deltaTime;
+                timer2 -= Time.deltaTime;
 
-            //        doneRight = false;
-            //    }
-            //}
-            //else
-            //if (!doneRight)
-            //{
-            //    Vector2 right = new Vector2(6, 5);
-            //    transform.Translate(right * 0.05f * Time.deltaTime);
+                if (timer1 <= 0)
+                {
+                    GetComponent<CircleCollider2D>().enabled = true;
+                    isFree = true;
+                }
 
-            //    timer1 -= Time.deltaTime;
-            //    timer2 -= Time.deltaTime;
-
-            //    if (timer1 <= 0)
-            //    {
-            //        GetComponent<CircleCollider2D>().enabled = true;
-
-            //        timer1 = timer1Max;
-            //    }
-
-            //    if (timer2 <= 0)
-            //    {
-            //        isGoingAway = false;
-            //        doneRight = false;
-
-            //        timer2 = timer2Max;
-            //    }
-            //}
-            #endregion
+                if (timer2 <= 0)
+                {
+                    isGoingAway = false;
+                    doneRight = false;
+                    timer2 = timer2Max;
+                    timer1 = timer1Max;
+                }
+            }
         }
     }
 
@@ -227,13 +196,11 @@ public class Person : MonoBehaviour
             isFree = false;
             isGoingAway = false;
 
-            goAwayChance = Random.Range(-5, 5);
-            OnPlayerTime = Random.Range(minOnPlayerTime, maxOnPlayerTime);
             OnPlayerTimeMax = OnPlayerTime;
 
             OneMoreChild();
         }
-    } //quando person tocca player
+    } 
 
     #region Magnetism
     private void OnTriggerStay2D(Collider2D other)
@@ -249,7 +216,8 @@ public class Person : MonoBehaviour
         {
             GetComponentInChildren<LineLegame>().drawLine();
         }
-    } //magnetismo player su person
+    } 
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "MagneticField")
@@ -268,14 +236,14 @@ public class Person : MonoBehaviour
     } //magnetismo player su person
     #endregion
 
-    private void GoAwayFromPlayer()
+    public void GoAwayFromPlayer()
     {
-        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        Debug.Log("sto andando via dal player");
+        GetComponent<CircleCollider2D>().enabled = false;
 
         isGoingAway = true;
-        isFree = true;
-        gameObject.transform.parent = null;
-    } //persona si stacca da player
+        transform.parent = null;
+    } 
 
     public void OneMoreChild()
     {
@@ -289,6 +257,5 @@ public class Person : MonoBehaviour
                 gameObject.transform.position = playerChild.transform.position;
             }
         }
-    } //un figlio si aggiunge al Player
-
+    } 
 }

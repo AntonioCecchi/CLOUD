@@ -52,15 +52,30 @@ public class Enemy_Scr : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            GetComponent<PolygonCollider2D>().enabled = false;
-            gameObject.transform.parent = Player.transform;
-                        
-            onPlayer = true;
+            StartCoroutine(PersonAway());
         }
 
         if(other.tag == "EnemyTrigger")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
+    }
+
+    private IEnumerator PersonAway()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        GameObject[] playerChildren = Player.transform.GetChild(0).GetComponent<PlayerChildrenManager>().PlayerCMChildren;
+        foreach (GameObject child in playerChildren)
+        {
+            if (child.transform.childCount > 0)
+            {
+                child.transform.GetChild(0).GetComponent<Person>().GoAwayFromPlayer();
+            }
+        }
+
+        yield return new WaitForSeconds(1);
+
+        Destroy(gameObject);
     }
 }
