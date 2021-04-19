@@ -183,13 +183,7 @@ public class Player_Physic : MonoBehaviour
         switch(totalChildrenNumber)
         {
             case 0:
-                float newScale0 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[0], Time.deltaTime * growingSpeed);
-                graphics.transform.localScale = new Vector2(newScale0, newScale0);
-
-                if (graphics.transform.localScale.x > scaleChanges[0] + 0.1f)
-                {
-                    graphics.transform.localScale = new Vector2(scaleChanges[0], scaleChanges[0]);
-                }
+                graphics.transform.localScale = new Vector2 (scaleChanges[0], scaleChanges[0]);
                 break;
             case 1:
                 float newScale1 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[1], Time.deltaTime * growingSpeed);
