@@ -238,7 +238,6 @@ public class Person : MonoBehaviour
 
     public void GoAwayFromPlayer()
     {
-        Debug.Log("sto andando via dal player");
         GetComponent<CircleCollider2D>().enabled = false;
 
         isGoingAway = true;
