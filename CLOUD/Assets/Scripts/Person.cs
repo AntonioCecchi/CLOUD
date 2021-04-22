@@ -7,6 +7,7 @@ public class Person : MonoBehaviour
     #region GameObj
     private GameObject MagneticField;
     private GameObject playerChildrenManager;
+    private GameObject Player;
 
     private GameObject[] playerCMChildren;
 
@@ -28,6 +29,7 @@ public class Person : MonoBehaviour
 
     public bool isAttracted = false;
     public bool isFree = true;
+    public bool playerIsFull = false;
 
     private float timer1 = 1;
     private float timer1Max = 1;
@@ -41,7 +43,7 @@ public class Person : MonoBehaviour
     public float wanderingSpeed;
     #endregion
 
-    float scaleChange = 1.25f;
+    float scaleChange = 1.5f;
     Vector2 scaleDefault = new Vector2(1, 1);
 
     private Animator fillAnimator;
@@ -53,6 +55,7 @@ public class Person : MonoBehaviour
 
     private void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         MagneticField = GameObject.FindGameObjectWithTag("MagneticField");
         playerChildrenManager = GameObject.FindGameObjectWithTag("ChildrenManager");
 
@@ -69,6 +72,12 @@ public class Person : MonoBehaviour
 
     private void Update()
     {
+        if(Player.GetComponent<Player_Physic>().totalChildrenNumber == 6)
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         if(!isFree)
         {
             gameObject.layer = 8;

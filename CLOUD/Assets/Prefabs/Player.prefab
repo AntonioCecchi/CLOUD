@@ -500,9 +500,8 @@ MonoBehaviour:
   - 3
   - 3.5
   - 4
-  - 4.5
-  - 5
-  growingSpeed: 0.1
+  growingSpeed: 0.5
+  MagneticField: {fileID: 5988228347127379957}
 --- !u!95 &1121728922479601907
 Animator:
   serializedVersion: 3
@@ -650,8 +649,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCMChildren:
-  - {fileID: 500994711}
-  - {fileID: 1128578057}
   - {fileID: 1382674783}
   - {fileID: 923006980}
   - {fileID: 1436143606}
@@ -666,8 +663,6 @@ MonoBehaviour:
   fourthChildChildren: []
   fifthChildChildren: []
   sixthChildChildren: []
-  seventhChildChildren: []
-  eighthChildChildren: []
 --- !u!1 &2609947996051535376
 GameObject:
   m_ObjectHideFlags: 0

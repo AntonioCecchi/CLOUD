@@ -54,6 +54,7 @@ public class Player_Physic : MonoBehaviour
 
     private Animator myAnim;
 
+    public GameObject MagneticField;
 
     void Start()
     {
@@ -239,26 +240,36 @@ public class Player_Physic : MonoBehaviour
                     graphics.transform.localScale = new Vector2(scaleChanges[6], scaleChanges[6]);
                 }
                 break;
-            case 7:
-                float newScale7 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[7], Time.deltaTime * growingSpeed);
-                graphics.transform.localScale = new Vector2(newScale7, newScale7);
+            //case 7:
+            //    float newScale7 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[7], Time.deltaTime * growingSpeed);
+            //    graphics.transform.localScale = new Vector2(newScale7, newScale7);
 
-                if (graphics.transform.localScale.x > scaleChanges[7] - 0.1)
-                {
-                    graphics.transform.localScale = new Vector2(scaleChanges[7], scaleChanges[7]);
-                }
-                break;
-            case 8:
-                float newScale8 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[8], Time.deltaTime * growingSpeed);
-                graphics.transform.localScale = new Vector2(newScale8, newScale8);
+            //    if (graphics.transform.localScale.x > scaleChanges[7] - 0.1)
+            //    {
+            //        graphics.transform.localScale = new Vector2(scaleChanges[7], scaleChanges[7]);
+            //    }
+            //    break;
+            //case 8:
+            //    float newScale8 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[8], Time.deltaTime * growingSpeed);
+            //    graphics.transform.localScale = new Vector2(newScale8, newScale8);
                 
-                if (graphics.transform.localScale.x > scaleChanges[8] - 0.1)
-                {
-                    graphics.transform.localScale = new Vector2(scaleChanges[8], scaleChanges[8]);
-                }
-                break;
+            //    if (graphics.transform.localScale.x > scaleChanges[8] - 0.1)
+            //    {
+            //        graphics.transform.localScale = new Vector2(scaleChanges[8], scaleChanges[8]);
+            //    }
+            //    break;
         }
         #endregion
+
+        if(totalChildrenNumber == 6)
+        {
+            MagneticField.SetActive(false);
+        }
+        else
+        {
+            MagneticField.SetActive(true);
+        }
+
 
     }
 
