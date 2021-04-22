@@ -31,11 +31,6 @@ public class Enemy_Scr : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(Player.GetComponent<Player_Physic>().totalChildrenNumber == 0)
-        {
-            isPlayerSafe = true;
-        }
-
         if(!isPlayerSafe)
         {
             Vector2 direction = (Vector2)Player.transform.position - myRb.position;

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 267819190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2609947995044432623}
@@ -489,7 +489,7 @@ MonoBehaviour:
   canJump: 0
   jumpFXPrefab: {fileID: 2318090136732233149, guid: 6136c9796d0593f439858c366f83ef70, type: 3}
   GroundCheck: {fileID: 5252843076976988484}
-  jumpStrenght: 6
+  jumpStrenght: 4
   jumpStrenghtMax: 6
   totalChildrenNumber: 0
   scaleChanges:

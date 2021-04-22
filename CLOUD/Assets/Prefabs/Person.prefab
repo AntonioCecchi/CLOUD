@@ -350,9 +350,11 @@ MonoBehaviour:
   child: {fileID: 883535063}
   minOnPlayerTime: 10
   maxOnPlayerTime: 20
+  isGoingAway: 0
   isAttracted: 0
   isFree: 0
-  wanderingSpeed: 0.5
+  playerIsFull: 1
+  wanderingSpeed: 0.1
   magneticForceMultiplier: 0.35
 --- !u!58 &2004626046284668789
 CircleCollider2D:
