@@ -4,32 +4,47 @@ using UnityEngine;
 
 public class EnemySpawner_Scr : MonoBehaviour
 {
-    public GameObject enemy;
-    private Transform targetSpawn;
+    [Space(10)]
+    public List<GameObject> enemies = new List<GameObject>();
 
-    public float timerSpawnMin;
-    public float timerSpawn;
-    public float timerSpawnMax;
+    [Space(10)]
+    public GameObject WestSpawner;
+    public GameObject SouthSpawner;
+    public GameObject EastSpawner;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        timerSpawn = Random.Range(timerSpawnMin, timerSpawnMax);
+        foreach(GameObject enemy in enemies)
+        {
+            if(enemy == null)
+            {
+                enemies.Remove(enemy);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnEnemy()
     {
-        timerSpawn -= Time.deltaTime;
+        float randomChance = Random.Range(0, 3);
 
-        targetSpawn = gameObject.transform.GetChild(Random.Range(0, 4));
-
-        if (timerSpawn <= 0)
+        if(randomChance >= 0 && randomChance < 1)
         {
-            Instantiate(enemy, targetSpawn.position, targetSpawn.rotation);
-
-            timerSpawn = Random.Range(timerSpawnMin, timerSpawnMax);
+            enemies[0].transform.position = WestSpawner.transform.position;
+            enemies[0].GetComponent<Enemy_Scr>().isAwake = true;
+            enemies[0].SetActive(true);
         }
-
+        else
+        if(randomChance >= 1 && randomChance < 2)
+        {
+            enemies[0].transform.position = EastSpawner.transform.position;
+            enemies[0].GetComponent<Enemy_Scr>().isAwake = true;
+            enemies[0].SetActive(true);
+        }
+        else
+        {
+            enemies[0].transform.position = SouthSpawner.transform.position;
+            enemies[0].GetComponent<Enemy_Scr>().isAwake = true;
+            enemies[0].SetActive(true);
+        }
     }
 }

@@ -13,15 +13,12 @@ public class Player_Physic : MonoBehaviour
     public bool canMove = true;
     #endregion
 
-
     #region Jump Var
     [Header("Jump Variables")]
-
+    public bool canJump = true;
+    [Space(10)]
     public float gravityStrenght = 5f;
     public float gravityChanger = 5f;
-
-    public bool canJump = true;
-
     public GameObject jumpFXPrefab;
     public GameObject GroundCheck;
 
@@ -46,6 +43,8 @@ public class Player_Physic : MonoBehaviour
 
     #endregion
 
+    #region scaling
+    [Space(10)]
     public float[] scaleChanges;
     private GameObject graphics;
     [Space (10)]
@@ -55,6 +54,9 @@ public class Player_Physic : MonoBehaviour
     private Animator myAnim;
 
     public GameObject MagneticField;
+
+    #endregion
+
 
     void Start()
     {
@@ -269,10 +271,7 @@ public class Player_Physic : MonoBehaviour
         {
             MagneticField.SetActive(true);
         }
-
-
     }
-
 
     public void Jump()
     {

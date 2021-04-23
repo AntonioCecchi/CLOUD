@@ -6,8 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy_Scr : MonoBehaviour
 {
-    [HideInInspector]
-    public bool isPlayerSafe = false;
+    public bool isAwake = false;
 
     private GameObject Player;
     private Rigidbody2D myRb;
@@ -17,21 +16,15 @@ public class Enemy_Scr : MonoBehaviour
 
     private bool onPlayer = false;
 
-    private Vector3 startPos;
-
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-
-        startPos = transform.position;
-
-
         myRb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
-        if(!isPlayerSafe)
+        if(isAwake)
         {
             Vector2 direction = (Vector2)Player.transform.position - myRb.position;
 
@@ -64,12 +57,16 @@ public class Enemy_Scr : MonoBehaviour
         {
             StartCoroutine(PersonAway());
         }
+    }
 
-        if(other.tag == "EnemyTrigger")
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.tag == "CameraTrigger")
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
+
 
     private IEnumerator PersonAway()
     {

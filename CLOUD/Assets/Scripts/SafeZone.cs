@@ -15,7 +15,7 @@ public class SafeZone : MonoBehaviour
             foreach(GameObject enemy in enemies)
             {
                 enemy.GetComponent<SpriteRenderer>().enabled = false; 
-                enemy.GetComponent<Enemy_Scr>().isPlayerSafe = true;
+                enemy.GetComponent<Enemy_Scr>().isAwake = true;
             }
         }
     }
@@ -27,7 +27,7 @@ public class SafeZone : MonoBehaviour
             foreach (GameObject enemy in enemies)
             {
                 enemy.GetComponent<SpriteRenderer>().enabled = true;
-                enemy.GetComponent<Enemy_Scr>().isPlayerSafe = false;
+                enemy.GetComponent<Enemy_Scr>().isAwake = false;
                 Destroy(gameObject);
             }
         }

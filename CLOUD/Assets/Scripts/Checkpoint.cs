@@ -5,9 +5,6 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private GameObject player;
-    
-    
-
     private bool playerIsTriggering;
 
     private void Start()

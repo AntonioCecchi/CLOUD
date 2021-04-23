@@ -15,6 +15,7 @@ TagManager:
   - ChildrenManager
   - PersonCM
   - PersonOnPlayer
+  - CameraTrigger
   layers:
   - Default
   - TransparentFX
