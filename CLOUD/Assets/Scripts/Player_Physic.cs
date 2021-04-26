@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class Player_Physic : MonoBehaviour
 {
+    [HideInInspector]
+    public bool isFrozen;
+
+
     #region Movement Var
     [Header("Movement Variables")]
 
     public float moveSpeed = 5f;
     private Rigidbody2D myRb;
     private float dirX;
-    public bool canMove = true;
+    public bool canMove;
     #endregion
 
     #region Jump Var
     [Header("Jump Variables")]
-    public bool canJump = true;
+    public bool canJump;
     [Space(10)]
     public float gravityStrenght = 5f;
     [Tooltip("il numero che viene diviso per il numero dei figli a te legati in quel momento. La formula è: Grv Str = Grv chng / totnumchild")]
@@ -81,6 +85,19 @@ public class Player_Physic : MonoBehaviour
 
     void Update()
     {
+        if(isFrozen)
+        {
+            myRb.constraints = RigidbodyConstraints2D.FreezeAll;
+            canMove = false;
+        }
+        else
+        if(!isFrozen)
+        {
+            canMove = true;
+            myRb.constraints = RigidbodyConstraints2D.None;
+        }
+
+
         persons = GameObject.FindGameObjectsWithTag("Person");
 
         myRb.AddForce(new Vector2(0f, -gravityStrenght), ForceMode2D.Force);
@@ -276,7 +293,10 @@ public class Player_Physic : MonoBehaviour
 
     public void Jump()
     {
-        Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
+        if(!isFrozen)
+        {
+            Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
+        }
 
         myRb.velocity = Vector2.up * jumpStrenght;
 
