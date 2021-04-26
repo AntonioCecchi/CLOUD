@@ -20,11 +20,10 @@ public class Person : MonoBehaviour
     public float minOnPlayerTime;
     public float maxOnPlayerTime;
     private float OnPlayerTime;
-    private float OnPlayerTimeMax;
-    private float goAwayChance;
 
     public bool isGoingAway = false;
-    private bool doneRight = true;
+
+    private float randomChance;
     #endregion
 
     public bool isAttracted = false;
@@ -33,8 +32,8 @@ public class Person : MonoBehaviour
 
     private float timer1 = 1;
     private float timer1Max = 1;
-    private float timer2 = 5;
-    private float timer2Max = 5;
+    private float timer2 = 1;
+    private float timer2Max = 1;
 
     #region WanderingVar
     private bool moveRight;
@@ -60,7 +59,6 @@ public class Person : MonoBehaviour
         playerChildrenManager = GameObject.FindGameObjectWithTag("ChildrenManager");
 
         OnPlayerTime = Random.Range(minOnPlayerTime, maxOnPlayerTime);
-        OnPlayerTimeMax = OnPlayerTime;
 
         isFree = true;
 
@@ -149,10 +147,13 @@ public class Person : MonoBehaviour
 
         if (isGoingAway)
         {
-            if (doneRight)
+            
+            Debug.Log(randomChance);
+
+            if (randomChance < 5f)
             {
-                Vector2 left = new Vector2(-6, 5);
-                transform.Translate(left * 0.05f * Time.deltaTime);
+                Vector2 left = new Vector2(-5, -5);
+                transform.Translate(left * 0.5f * Time.deltaTime);
 
                 timer1 -= Time.deltaTime;
                 timer2 -= Time.deltaTime;
@@ -168,14 +169,13 @@ public class Person : MonoBehaviour
                     isGoingAway = false;
                     timer2 = timer2Max;
                     timer1 = timer1Max;
-                    doneRight = false;
                 }
             }
             else
-            if (!doneRight)
+            if (randomChance >= 5f)
             {
-                Vector2 right = new Vector2(6, 5);
-                transform.Translate(right * 0.05f * Time.deltaTime);
+                Vector2 right = new Vector2(5, -5);
+                transform.Translate(right * 0.5f * Time.deltaTime);
 
                 timer1 -= Time.deltaTime;
                 timer2 -= Time.deltaTime;
@@ -189,7 +189,6 @@ public class Person : MonoBehaviour
                 if (timer2 <= 0)
                 {
                     isGoingAway = false;
-                    doneRight = false;
                     timer2 = timer2Max;
                     timer1 = timer1Max;
                 }
@@ -204,8 +203,6 @@ public class Person : MonoBehaviour
             isAttracted = false;
             isFree = false;
             isGoingAway = false;
-
-            OnPlayerTimeMax = OnPlayerTime;
 
             OneMoreChild();
         }
@@ -248,6 +245,7 @@ public class Person : MonoBehaviour
     public void GoAwayFromPlayer()
     {
         GetComponent<CircleCollider2D>().enabled = false;
+        randomChance = Random.Range(0, 10);
 
         isGoingAway = true;
         transform.parent = null;

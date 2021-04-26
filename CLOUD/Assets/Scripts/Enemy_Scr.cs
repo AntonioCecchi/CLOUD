@@ -57,6 +57,10 @@ public class Enemy_Scr : MonoBehaviour
         {
             StartCoroutine(PersonAway());
         }
+        if(other.tag == "NorthEnemyTrigger")
+        {
+            isAwake = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -66,7 +70,6 @@ public class Enemy_Scr : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
     private IEnumerator PersonAway()
     {

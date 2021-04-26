@@ -11,16 +11,24 @@ public class PersonSpawner : MonoBehaviour
 
     public float spawnTime;
     public float spawnTimeMax;
-
+    private float timer;
 
     void Start()
     {
         spawnTime = spawnTimeMax;
+        timer = 30f;
     }
 
     void Update()
     {
-        if (player.GetComponent<Player_Physic>().totalChildrenNumber == 0)
+        timer -= Time.deltaTime;
+
+        if(timer <= 0)
+        {
+            timer = 0;
+        }
+
+        if (player.GetComponent<Player_Physic>().totalChildrenNumber == 0 && timer == 0)
         {
             spawnTime -= Time.deltaTime;
         }

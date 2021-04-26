@@ -354,7 +354,7 @@ MonoBehaviour:
   isAttracted: 0
   isFree: 0
   playerIsFull: 1
-  wanderingSpeed: 0.1
+  wanderingSpeed: 0.5
   magneticForceMultiplier: 0.35
 --- !u!58 &2004626046284668789
 CircleCollider2D:

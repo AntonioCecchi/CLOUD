@@ -18,6 +18,7 @@ public class Player_Physic : MonoBehaviour
     public bool canJump = true;
     [Space(10)]
     public float gravityStrenght = 5f;
+    [Tooltip("il numero che viene diviso per il numero dei figli a te legati in quel momento. La formula è: Grv Str = Grv chng / totnumchild")]
     public float gravityChanger = 5f;
     public GameObject jumpFXPrefab;
     public GameObject GroundCheck;
