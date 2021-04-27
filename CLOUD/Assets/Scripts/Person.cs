@@ -147,7 +147,6 @@ public class Person : MonoBehaviour
 
         if (isGoingAway)
         {
-            
             Debug.Log(randomChance);
 
             if (randomChance < 5f)
@@ -206,7 +205,7 @@ public class Person : MonoBehaviour
 
             OneMoreChild();
         }
-    } 
+    }
 
     #region Magnetism
     private void OnTriggerStay2D(Collider2D other)
@@ -239,7 +238,7 @@ public class Person : MonoBehaviour
                 GetComponentInChildren<LineRenderer>().enabled = false;
             }
         }
-    } //magnetismo player su person
+    } 
     #endregion
 
     public void GoAwayFromPlayer()

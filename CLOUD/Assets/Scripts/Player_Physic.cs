@@ -62,7 +62,6 @@ public class Player_Physic : MonoBehaviour
     private Animator myAnim;
 
     public GameObject MagneticField;
-
     #endregion
 
 
@@ -200,8 +199,8 @@ public class Player_Physic : MonoBehaviour
         {
             foreach (GameObject Person in persons)
             {
-                Person.GetComponent<CircleCollider2D>().enabled = false;
-                Person.GetComponent<BoxCollider2D>().enabled = false;
+                //Person.GetComponent<CircleCollider2D>().enabled = false;
+                //Person.GetComponent<BoxCollider2D>().enabled = false;
                 myAnim.SetBool("isGrowing", true);
             }
         }
@@ -210,6 +209,7 @@ public class Player_Physic : MonoBehaviour
         {
             case 0:
                 graphics.transform.localScale = new Vector2 (scaleChanges[0], scaleChanges[0]);
+                GetComponent<CircleCollider2D>().radius = 0.2f;
                 break;
             case 1:
                 float newScale1 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[1], Time.deltaTime * growingSpeed);
@@ -218,6 +218,7 @@ public class Player_Physic : MonoBehaviour
                 if(graphics.transform.localScale.x > scaleChanges[1] - 0.1)
                 {
                     graphics.transform.localScale = new Vector2(scaleChanges[1], scaleChanges[1]);
+                    GetComponent<CircleCollider2D>().radius = 0.3f;
                 }
                 break;
             case 2:
@@ -227,6 +228,7 @@ public class Player_Physic : MonoBehaviour
                 if (graphics.transform.localScale.x > scaleChanges[2] - 0.1)
                 {
                     graphics.transform.localScale = new Vector2(scaleChanges[2], scaleChanges[2]);
+                    GetComponent<CircleCollider2D>().radius = 0.4f;
                 }
                 break;
             case 3:
@@ -236,6 +238,7 @@ public class Player_Physic : MonoBehaviour
                 if (graphics.transform.localScale.x > scaleChanges[3] - 0.1)
                 {
                     graphics.transform.localScale = new Vector2(scaleChanges[3], scaleChanges[3]);
+                    GetComponent<CircleCollider2D>().radius = 0.5f;
                 }
                 break;
             case 4:
@@ -245,6 +248,7 @@ public class Player_Physic : MonoBehaviour
                 if (graphics.transform.localScale.x > scaleChanges[4] - 0.1)
                 {
                     graphics.transform.localScale = new Vector2(scaleChanges[4], scaleChanges[4]);
+                    GetComponent<CircleCollider2D>().radius = 0.6f;
                 }
                 break;
             case 5:
@@ -254,6 +258,7 @@ public class Player_Physic : MonoBehaviour
                 if (graphics.transform.localScale.x > scaleChanges[5] - 0.1)
                 {
                     graphics.transform.localScale = new Vector2(scaleChanges[5], scaleChanges[5]);
+                    GetComponent<CircleCollider2D>().radius = 0.7f;
                 }
                 break;
             case 6:
@@ -263,6 +268,7 @@ public class Player_Physic : MonoBehaviour
                 if (graphics.transform.localScale.x > scaleChanges[6] - 0.1)
                 {
                     graphics.transform.localScale = new Vector2(scaleChanges[6], scaleChanges[6]);
+                    GetComponent<CircleCollider2D>().radius = 0.8f;
                 }
                 break;
             //case 7:

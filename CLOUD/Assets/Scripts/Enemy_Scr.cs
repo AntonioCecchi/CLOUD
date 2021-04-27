@@ -61,6 +61,13 @@ public class Enemy_Scr : MonoBehaviour
         {
             isAwake = true;
         }
+        if(other.tag == "Person")
+        {
+            if(other.GetComponent<Person>().isFree == false)
+            {
+                StartCoroutine(PersonAway());
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

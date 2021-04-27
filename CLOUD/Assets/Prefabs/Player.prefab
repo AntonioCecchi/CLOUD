@@ -554,7 +554,7 @@ MonoBehaviour:
   GroundCheck: {fileID: 5252843076976988484}
   InitialJumpStrenght: 3
   jumpStrenght: 4
-  jumpStrenghtMax: 6
+  jumpStrenghtMax: 8
   totalChildrenNumber: 0
   scaleChanges:
   - 1
