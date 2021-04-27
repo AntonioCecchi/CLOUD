@@ -552,6 +552,7 @@ MonoBehaviour:
   gravityChanger: 3
   jumpFXPrefab: {fileID: 2318090136732233149, guid: 6136c9796d0593f439858c366f83ef70, type: 3}
   GroundCheck: {fileID: 5252843076976988484}
+  InitialJumpStrenght: 3
   jumpStrenght: 4
   jumpStrenghtMax: 6
   totalChildrenNumber: 0

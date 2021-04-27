@@ -27,7 +27,9 @@ public class Player_Physic : MonoBehaviour
     public GameObject jumpFXPrefab;
     public GameObject GroundCheck;
 
-    public float jumpStrenght = 1.0f;
+    [Space(10)]
+    public float InitialJumpStrenght = 1.0f;
+    public float jumpStrenght = 1.0f;   
     public float jumpStrenghtMax = 1.0f;
     #endregion
 
@@ -44,6 +46,7 @@ public class Player_Physic : MonoBehaviour
     private GameObject seventh;
     private GameObject eighth;
 
+    [Space(10)]
     public int totalChildrenNumber;
 
     #endregion
@@ -95,6 +98,7 @@ public class Player_Physic : MonoBehaviour
         {
             canMove = true;
             myRb.constraints = RigidbodyConstraints2D.None;
+            myRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
 
@@ -144,7 +148,7 @@ public class Player_Physic : MonoBehaviour
 
         #region Jump
 
-        jumpStrenght = jumpStrenght + (totalChildrenNumber / 2);
+        jumpStrenght = InitialJumpStrenght + (totalChildrenNumber / 2);
 
         if (GroundCheck.activeSelf == false) //se il mio ground check NON è attivo (quindi ho figli addosso) fammi saltare solo quando la mia veloctità in Y è negativa
         {
@@ -174,10 +178,11 @@ public class Player_Physic : MonoBehaviour
             }
         }
 
-        if (Input.touchCount > 0 && canJump == true || Input.GetKeyDown(KeyCode.Space) && canJump == true) //da fixare il poter tener premuto
-        {
-            Jump();
-        }
+        //if (Input.touchCount == 1 && canJump == true || Input.GetKeyDown(KeyCode.Space) && canJump == true) //da fixare il poter tener premuto
+        //{
+        //    Jump();
+        //    print(Input.touchCount);
+        //}
         #endregion
 
         #region scale feedback
@@ -293,12 +298,14 @@ public class Player_Physic : MonoBehaviour
 
     public void Jump()
     {
-        if(!isFrozen)
+        if(!canJump)
         {
+
+        }
+        else if (!isFrozen && canJump)
+        {
+            myRb.velocity = Vector2.up * jumpStrenght;
             Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
         }
-
-        myRb.velocity = Vector2.up * jumpStrenght;
-
     }
 }
