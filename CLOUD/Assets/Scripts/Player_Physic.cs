@@ -199,8 +199,8 @@ public class Player_Physic : MonoBehaviour
         {
             foreach (GameObject Person in persons)
             {
-                //Person.GetComponent<CircleCollider2D>().enabled = false;
-                //Person.GetComponent<BoxCollider2D>().enabled = false;
+                Person.GetComponent<CircleCollider2D>().enabled = false;
+                Person.GetComponent<BoxCollider2D>().enabled = false;
                 myAnim.SetBool("isGrowing", true);
             }
         }

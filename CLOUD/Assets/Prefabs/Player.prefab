@@ -564,7 +564,7 @@ MonoBehaviour:
   - 3
   - 3.5
   - 4
-  growingSpeed: 0.35
+  growingSpeed: 0.3
   MagneticField: {fileID: 5988228347127379957}
 --- !u!95 &1121728922479601907
 Animator:

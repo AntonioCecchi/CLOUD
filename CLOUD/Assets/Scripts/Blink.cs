@@ -10,6 +10,10 @@ public class Blink : MonoBehaviour
     public float inputTimer;
     public float firstPersonTimer;
 
+    [Space(10)]
+    public GameObject lampOn1;
+    public GameObject lampOn2;
+    public GameObject lampOn3;
 
     private bool phase1;
     private bool phase2;
@@ -52,6 +56,22 @@ public class Blink : MonoBehaviour
         if(phase2)
         {
             myAnim.SetTrigger("firstLamp");
+
+            if(lampOn1.activeSelf)
+            {
+                myAnim.SetTrigger("doneFirstLamp");
+                phase2 = false;
+                phase3 = false;
+            }
+        }
+
+        if(phase3)
+        {
+            if(lampOn2.activeSelf)
+            {
+                myAnim.SetTrigger("doneSecondLamp");
+                phase3 = false;
+            }
         }
         
     }
