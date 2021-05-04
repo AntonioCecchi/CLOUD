@@ -46,6 +46,9 @@ public class Person : MonoBehaviour
     Vector2 scaleDefault = new Vector2(1, 1);
 
     private Animator fillAnimator;
+    AudioSource audioSource;
+    public AudioClip legameDone;
+    public AudioClip legameBroken;
 
     [SerializeField]
     [Range(0, 5)]
@@ -65,6 +68,7 @@ public class Person : MonoBehaviour
         timer1Max = timer1;
 
         fillAnimator = transform.GetChild(0).GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -222,6 +226,7 @@ public class Person : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            audioSource.PlayOneShot(legameDone, 0.5f);
             isAttracted = false;
             isFree = false;
             isGoingAway = false;
@@ -266,6 +271,7 @@ public class Person : MonoBehaviour
 
     public void GoAwayFromPlayer()
     {
+        audioSource.PlayOneShot(legameBroken, 0.2f);
         GetComponent<CircleCollider2D>().enabled = false;
         randomChance = Random.Range(0, 10);
 
