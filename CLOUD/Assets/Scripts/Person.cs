@@ -149,7 +149,7 @@ public class Person : MonoBehaviour
         {
             Debug.Log(randomChance);
 
-            if (randomChance < 5f)
+            if (randomChance < 3f)
             {
                 Vector2 left = new Vector2(-5, -5);
                 transform.Translate(left * 0.5f * Time.deltaTime);
@@ -171,7 +171,7 @@ public class Person : MonoBehaviour
                 }
             }
             else
-            if (randomChance >= 5f)
+            if (randomChance >= 3f && randomChance < 7f)
             {
                 Vector2 right = new Vector2(5, -5);
                 transform.Translate(right * 0.5f * Time.deltaTime);
@@ -188,6 +188,29 @@ public class Person : MonoBehaviour
                 if (timer2 <= 0)
                 {
                     isGoingAway = false;
+                    timer2 = timer2Max;
+                    timer1 = timer1Max;
+                }
+            }
+            else
+            if (randomChance >= 7f)
+            {
+                Vector2 right = new Vector2(10, -3);
+                transform.Translate(right * 0.2f * Time.deltaTime);
+
+                timer1 -= Time.deltaTime;
+                timer2 -= Time.deltaTime;
+
+                if (timer1 <= 0)
+                {
+                    GetComponent<CircleCollider2D>().enabled = true;
+                    isFree = true;
+                }
+
+                if (timer2 <= 0)
+                {
+                    isGoingAway = false;
+                    Destroy(gameObject);
                     timer2 = timer2Max;
                     timer1 = timer1Max;
                 }

@@ -147,7 +147,7 @@ public class Player_Physic : MonoBehaviour
 
         #region Jump
 
-        jumpStrenght = InitialJumpStrenght + (totalChildrenNumber / 2);
+        jumpStrenght = InitialJumpStrenght + (totalChildrenNumber);
 
         if (GroundCheck.activeSelf == false) //se il mio ground check NON è attivo (quindi ho figli addosso) fammi saltare solo quando la mia veloctità in Y è negativa
         {
