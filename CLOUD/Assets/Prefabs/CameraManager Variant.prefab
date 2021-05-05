@@ -44,7 +44,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 17.160845}
+  m_Offset: {x: 0, y: 12.159889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -55,7 +55,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.353817, y: 13.783699}
+  m_Size: {x: 14.353817, y: 3.7817879}
   m_EdgeRadius: 0
 --- !u!1 &1545452118
 GameObject:
@@ -3599,6 +3599,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 504100908, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 504100909, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: Player
       value: 
@@ -3613,7 +3617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3529453095804637777, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3199991
+      value: -1.9644011
       objectReference: {fileID: 0}
     - target: {fileID: 3529453095960604775, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3621,7 +3625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3529453095960604775, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.319836
+      value: -1.9625553
       objectReference: {fileID: 0}
     - target: {fileID: 3529453095960604824, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_BackGroundColor.a
@@ -3819,6 +3823,10 @@ PrefabInstance:
       propertyPath: enemies.Array.data[40]
       value: 
       objectReference: {fileID: 2551839312743400882}
+    - target: {fileID: 3529453096020931672, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3529453096020931673, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -3835,9 +3843,21 @@ PrefabInstance:
       propertyPath: m_SoftZoneHeight
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 3529453096759369780, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3529453097025691736, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_Name
       value: EnemiesTriggers
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189970547383983113, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758195483921038981, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9153476707576495382, guid: 50df1564a2dbea040b27fca73a189712, type: 3}
       propertyPath: m_RootOrder

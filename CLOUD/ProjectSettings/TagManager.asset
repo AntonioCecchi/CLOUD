@@ -28,8 +28,8 @@ TagManager:
   - 
   - OnPlayer
   - Enemy
-  - 
-  - 
+  - PlayerColliders
+  - Player
   - 
   - 
   - 

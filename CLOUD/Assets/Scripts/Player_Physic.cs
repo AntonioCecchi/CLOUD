@@ -123,24 +123,24 @@ public class Player_Physic : MonoBehaviour
         #region Movement Mobile
         if (canMove)
         {
-            dirX = Input.acceleration.x * moveSpeed;
-            transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
+            //dirX = Input.acceleration.x * moveSpeed;
+            //transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
 
-            if(dirX > 0 && dirX < 0.1)
-            {
+            //if(dirX > 0 && dirX < 0.1)
+            //{
                 
-            }
-            else
-            if(dirX < 0 && dirX > - 0.1)
-            {
+            //}
+            //else
+            //if(dirX < 0 && dirX > - 0.1)
+            //{
 
-            }
-            else
-            {
-                Vector3 movement = new Vector3(dirX, 0f, 0f);
+            //}
+            //else
+            //{
+            //    Vector3 movement = new Vector3(dirX, 0f, 0f);
 
-                transform.position += movement * Time.deltaTime * moveSpeed;
-            }
+            //    transform.position += movement * Time.deltaTime * moveSpeed;
+            //}
             
         }
         #endregion
@@ -176,12 +176,6 @@ public class Player_Physic : MonoBehaviour
                 canJump = true;
             }
         }
-
-        //if (Input.touchCount == 1 && canJump == true || Input.GetKeyDown(KeyCode.Space) && canJump == true) //da fixare il poter tener premuto
-        //{
-        //    Jump();
-        //    print(Input.touchCount);
-        //}
         #endregion
 
         #region scale feedback
@@ -310,8 +304,25 @@ public class Player_Physic : MonoBehaviour
         }
         else if (!isFrozen && canJump)
         {
-            myRb.velocity = Vector2.up * jumpStrenght;
+            //myRb.velocity = Vector2.up * jumpStrenght;
+            myRb.AddForce(Vector2.up * jumpStrenght, ForceMode2D.Impulse);
             Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
+        }
+    }
+    
+    public void MoveRight()
+    {
+        if(canMove)
+        {
+            myRb.AddForce(Vector2.right * 3, ForceMode2D.Impulse);
+        }
+    }
+    
+    public void MoveLeft()
+    {
+        if(canMove)
+        {
+            myRb.AddForce(Vector2.left * 3, ForceMode2D.Impulse);
         }
     }
 }
