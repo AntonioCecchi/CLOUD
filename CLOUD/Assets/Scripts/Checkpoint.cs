@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
 
     void Update()
     {
-        if(player.GetComponent<Rigidbody2D>().velocity.y <= 0 && playerIsTriggering == false && player.GetComponent<Player_Physic>().totalChildrenNumber == 0)
+        if(player.GetComponent<Rigidbody2D>().velocity.y <= 0 && playerIsTriggering == false)
         {
             GetComponent<BoxCollider2D>().isTrigger = false;
         }

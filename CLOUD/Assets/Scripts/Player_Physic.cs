@@ -180,34 +180,34 @@ public class Player_Physic : MonoBehaviour
 
         #region scale feedback
 
-        if(graphics.transform.localScale.x == scaleChanges[totalChildrenNumber])
-        {
-            foreach (GameObject Person in persons)
-            {
-                Person.GetComponent<CircleCollider2D>().enabled = true;
-                Person.GetComponent<BoxCollider2D>().enabled = true;
-                myAnim.SetBool("isGrowing", false);
-            }
-        }
-        else
-        if(graphics.transform.localScale.x == scaleChanges[6])
-        {
-            foreach (GameObject Person in persons)
-            {
-                Person.GetComponent<CircleCollider2D>().enabled = false;
-                Person.GetComponent<BoxCollider2D>().enabled = false;
-                myAnim.SetBool("isGrowing", false);
-            }
-        }
-        else
-        {
-            foreach (GameObject Person in persons)
-            {
-                Person.GetComponent<CircleCollider2D>().enabled = false;
-                Person.GetComponent<BoxCollider2D>().enabled = false;
-                myAnim.SetBool("isGrowing", true);
-            }
-        }
+        //if(graphics.transform.localScale.x == scaleChanges[totalChildrenNumber])
+        //{
+        //    foreach (GameObject Person in persons)
+        //    {
+        //        Person.GetComponent<CircleCollider2D>().enabled = true;
+        //        Person.GetComponent<BoxCollider2D>().enabled = true;
+        //        myAnim.SetBool("isGrowing", false);
+        //    }
+        //}
+        //else
+        //if(graphics.transform.localScale.x == scaleChanges[6])
+        //{
+        //    foreach (GameObject Person in persons)
+        //    {
+        //        Person.GetComponent<CircleCollider2D>().enabled = false;
+        //        Person.GetComponent<BoxCollider2D>().enabled = false;
+        //        myAnim.SetBool("isGrowing", false);
+        //    }
+        //}
+        //else
+        //{
+        //    foreach (GameObject Person in persons)
+        //    {
+        //        Person.GetComponent<CircleCollider2D>().enabled = false;
+        //        Person.GetComponent<BoxCollider2D>().enabled = false;
+        //        myAnim.SetBool("isGrowing", true);
+        //    }
+        //}
 
         switch(totalChildrenNumber)
         {
@@ -218,9 +218,11 @@ public class Player_Physic : MonoBehaviour
             case 1:
                 float newScale1 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[1], Time.deltaTime * growingSpeed);
                 graphics.transform.localScale = new Vector2(newScale1, newScale1);
+                myAnim.SetBool("isGrowing", true);
 
-                if(graphics.transform.localScale.x > scaleChanges[1] - 0.1)
+                if (graphics.transform.localScale.x > scaleChanges[1] - 0.1)
                 {
+                    myAnim.SetBool("isGrowing", false);
                     graphics.transform.localScale = new Vector2(scaleChanges[1], scaleChanges[1]);
                     GetComponent<CircleCollider2D>().radius = 0.3f;
                 }
@@ -228,9 +230,11 @@ public class Player_Physic : MonoBehaviour
             case 2:
                 float newScale2 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[2], Time.deltaTime * growingSpeed);
                 graphics.transform.localScale = new Vector2(newScale2, newScale2);
+                myAnim.SetBool("isGrowing", true);
 
                 if (graphics.transform.localScale.x > scaleChanges[2] - 0.1)
                 {
+                    myAnim.SetBool("isGrowing", false);
                     graphics.transform.localScale = new Vector2(scaleChanges[2], scaleChanges[2]);
                     GetComponent<CircleCollider2D>().radius = 0.4f;
                 }
@@ -238,9 +242,11 @@ public class Player_Physic : MonoBehaviour
             case 3:
                 float newScale3 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[3], Time.deltaTime * growingSpeed);
                 graphics.transform.localScale = new Vector2(newScale3, newScale3);
+                myAnim.SetBool("isGrowing", true);
 
                 if (graphics.transform.localScale.x > scaleChanges[3] - 0.1)
                 {
+                    myAnim.SetBool("isGrowing", false);
                     graphics.transform.localScale = new Vector2(scaleChanges[3], scaleChanges[3]);
                     GetComponent<CircleCollider2D>().radius = 0.5f;
                 }
@@ -248,9 +254,11 @@ public class Player_Physic : MonoBehaviour
             case 4:
                 float newScale4 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[4], Time.deltaTime * growingSpeed);
                 graphics.transform.localScale = new Vector2(newScale4, newScale4);
+                myAnim.SetBool("isGrowing", true);
 
                 if (graphics.transform.localScale.x > scaleChanges[4] - 0.1)
                 {
+                    myAnim.SetBool("isGrowing", false);
                     graphics.transform.localScale = new Vector2(scaleChanges[4], scaleChanges[4]);
                     GetComponent<CircleCollider2D>().radius = 0.6f;
                 }
@@ -258,9 +266,11 @@ public class Player_Physic : MonoBehaviour
             case 5:
                 float newScale5 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[5], Time.deltaTime * growingSpeed);
                 graphics.transform.localScale = new Vector2(newScale5, newScale5);
+                myAnim.SetBool("isGrowing", true);
 
                 if (graphics.transform.localScale.x > scaleChanges[5] - 0.1)
                 {
+                    myAnim.SetBool("isGrowing", false);
                     graphics.transform.localScale = new Vector2(scaleChanges[5], scaleChanges[5]);
                     GetComponent<CircleCollider2D>().radius = 0.7f;
                 }
@@ -268,9 +278,11 @@ public class Player_Physic : MonoBehaviour
             case 6:
                 float newScale6 = Mathf.Lerp(graphics.transform.localScale.x, scaleChanges[6], Time.deltaTime * growingSpeed);
                 graphics.transform.localScale = new Vector2(newScale6, newScale6);
+                myAnim.SetBool("isGrowing", true);
 
                 if (graphics.transform.localScale.x > scaleChanges[6] - 0.1)
                 {
+                    myAnim.SetBool("isGrowing", false);
                     graphics.transform.localScale = new Vector2(scaleChanges[6], scaleChanges[6]);
                     GetComponent<CircleCollider2D>().radius = 0.8f;
                 }
