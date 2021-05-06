@@ -61,7 +61,7 @@ public class Blink : MonoBehaviour
             {
                 myAnim.SetTrigger("doneFirstLamp");
                 phase2 = false;
-                phase3 = false;
+                phase3 = true;
             }
         }
 
@@ -73,6 +73,5 @@ public class Blink : MonoBehaviour
                 phase3 = false;
             }
         }
-        
     }
 }

@@ -123,25 +123,25 @@ public class Player_Physic : MonoBehaviour
         #region Movement Mobile
         if (canMove)
         {
-            //dirX = Input.acceleration.x * moveSpeed;
-            //transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
+            dirX = Input.acceleration.x * moveSpeed;
+            transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
 
-            //if(dirX > 0 && dirX < 0.1)
-            //{
-                
-            //}
-            //else
-            //if(dirX < 0 && dirX > - 0.1)
-            //{
+            if (dirX > 0 && dirX < 0.1)
+            {
 
-            //}
-            //else
-            //{
-            //    Vector3 movement = new Vector3(dirX, 0f, 0f);
+            }
+            else
+            if (dirX < 0 && dirX > -0.1)
+            {
 
-            //    transform.position += movement * Time.deltaTime * moveSpeed;
-            //}
-            
+            }
+            else
+            {
+                Vector3 movement = new Vector3(dirX, 0f, 0f);
+
+                transform.position += movement * Time.deltaTime * moveSpeed;
+            }
+
         }
         #endregion
 
@@ -186,6 +186,16 @@ public class Player_Physic : MonoBehaviour
             {
                 Person.GetComponent<CircleCollider2D>().enabled = true;
                 Person.GetComponent<BoxCollider2D>().enabled = true;
+                myAnim.SetBool("isGrowing", false);
+            }
+        }
+        else
+        if(graphics.transform.localScale.x == scaleChanges[6])
+        {
+            foreach (GameObject Person in persons)
+            {
+                Person.GetComponent<CircleCollider2D>().enabled = false;
+                Person.GetComponent<BoxCollider2D>().enabled = false;
                 myAnim.SetBool("isGrowing", false);
             }
         }
@@ -304,8 +314,8 @@ public class Player_Physic : MonoBehaviour
         }
         else if (!isFrozen && canJump)
         {
-            //myRb.velocity = Vector2.up * jumpStrenght;
-            myRb.AddForce(Vector2.up * jumpStrenght, ForceMode2D.Impulse);
+            myRb.velocity = Vector2.up * jumpStrenght;
+            //myRb.AddForce(Vector2.up * jumpStrenght, ForceMode2D.Impulse);
             Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
         }
     }
