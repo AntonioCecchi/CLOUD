@@ -64,6 +64,18 @@ public class Player_Physic : MonoBehaviour
     public GameObject MagneticField;
     #endregion
 
+    private float swipeStartTime;
+    private float swipeEndTime;
+    private float swipeTime;
+    private float swipeLenght;
+    private Vector2 startSwipePosition;
+    private Vector2 endSwipePosition;
+
+    public float maxSwipeTime;
+    public float minSwipeDistance;
+
+    [Space(10)]
+    public float swipeMovementSpeed;
 
     void Start()
     {
@@ -123,24 +135,50 @@ public class Player_Physic : MonoBehaviour
         #region Movement Mobile
         if (canMove)
         {
-            dirX = Input.acceleration.x * moveSpeed;
-            transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
-
-            if (dirX > 0 && dirX < 0.1)
+            if(Input.touchCount > 0)
             {
+                Touch touch = Input.GetTouch(0);
 
-            }
-            else
-            if (dirX < 0 && dirX > -0.1)
-            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    swipeStartTime = Time.time;
+                    startSwipePosition = touch.position;
+                }
+                else
+                if(touch.phase == TouchPhase.Ended)
+                {
+                    swipeEndTime = Time.time;
+                    endSwipePosition = touch.position;
+                    swipeTime = swipeEndTime - swipeStartTime;
+                    swipeLenght = (endSwipePosition - startSwipePosition).magnitude;
 
+                    if(swipeTime < maxSwipeTime && swipeLenght > minSwipeDistance)
+                    {
+                        SwipeMovement();
+                    }
+                }
             }
-            else
-            {
-                Vector3 movement = new Vector3(dirX, 0f, 0f);
 
-                transform.position += movement * Time.deltaTime * moveSpeed;
-            }
+            
+
+            //dirX = Input.acceleration.x * moveSpeed;
+            //transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
+
+            //if (dirX > 0 && dirX < 0.1)
+            //{
+
+            //}
+            //else
+            //if (dirX < 0 && dirX > -0.1)
+            //{
+
+            //}
+            //else
+            //{
+            //    Vector3 movement = new Vector3(dirX, 0f, 0f);
+
+            //    transform.position += movement * Time.deltaTime * moveSpeed;
+            //}
 
         }
         #endregion
@@ -346,5 +384,12 @@ public class Player_Physic : MonoBehaviour
         {
             myRb.AddForce(Vector2.left * 3, ForceMode2D.Impulse);
         }
+    }
+
+    public void SwipeMovement()
+    {
+        Vector3 swipeDirecion = endSwipePosition - startSwipePosition;
+
+        myRb.AddForce(swipeDirecion * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
     }
 }

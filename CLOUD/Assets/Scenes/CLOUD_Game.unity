@@ -2498,7 +2498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1037404656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3838,6 +3838,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1101539517146014605, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
+      propertyPath: maxSwipeTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101539517146014605, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
+      propertyPath: minSwipeDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101539517146014605, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
+      propertyPath: swipeMovementSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2609947995044432621, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3894,7 +3906,8 @@ PrefabInstance:
       propertyPath: enemySpawner
       value: 
       objectReference: {fileID: 934804048}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 825969578613379269, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
 --- !u!1 &1913111113
 GameObject:
