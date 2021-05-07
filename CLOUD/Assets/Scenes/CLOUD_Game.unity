@@ -3840,15 +3840,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1101539517146014605, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
       propertyPath: maxSwipeTime
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1101539517146014605, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
-      propertyPath: minSwipeDistance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1101539517146014605, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
+      propertyPath: minSwipeDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101539517146014605, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
       propertyPath: swipeMovementSpeed
-      value: 0.1
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609947995044432617, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2609947995044432621, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
       propertyPath: m_Name

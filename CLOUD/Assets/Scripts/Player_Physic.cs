@@ -133,7 +133,7 @@ public class Player_Physic : MonoBehaviour
         }
 
         #region Movement Mobile
-        if (canMove)
+        if (canMove && canJump)
         {
             if(Input.touchCount > 0)
             {
@@ -388,7 +388,8 @@ public class Player_Physic : MonoBehaviour
 
     public void SwipeMovement()
     {
-        Vector3 swipeDirecion = endSwipePosition - startSwipePosition;
+        Vector3 swipeDirecion = (endSwipePosition - startSwipePosition);
+        Debug.Log(swipeDirecion);
 
         myRb.AddForce(swipeDirecion * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
     }
