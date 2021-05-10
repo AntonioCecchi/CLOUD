@@ -6,19 +6,20 @@ public class GroundCheck : MonoBehaviour
 {
     public GameObject Player;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.tag == "Ground")
+        if (other.tag == "Ground")
         {
             Player.GetComponent<Player_Physic>().canJump = true;
+            Player.GetComponent<Player_Physic>().isGrounded = true;
         }
-    } 
-    
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.tag == "Ground")
+        if (other.tag == "Ground")
         {
-            Player.GetComponent<Player_Physic>().canJump = false;
+            Player.GetComponent<Player_Physic>().isGrounded = false;
         }
     }
 }

@@ -28,7 +28,7 @@ public class Player_Physic : MonoBehaviour
     public GameObject GroundCheck;
 
     [Space(10)]
-    public float InitialJumpStrenght = 1.0f;
+    public float initialJumpStrenght = 1.0f;
     public float jumpStrenght = 1.0f;   
     public float jumpStrenghtMax = 1.0f;
     #endregion
@@ -68,14 +68,22 @@ public class Player_Physic : MonoBehaviour
     private float swipeEndTime;
     private float swipeTime;
     private float swipeLenght;
-    private Vector2 startSwipePosition;
-    private Vector2 endSwipePosition;
+    [HideInInspector]
+    public Vector2 startSwipePosition;
+    [HideInInspector]
+    public Vector2 endSwipePosition;
 
     public float maxSwipeTime;
     public float minSwipeDistance;
 
     [Space(10)]
+    public float initialSwipeMovementSpeed;
     public float swipeMovementSpeed;
+    public float ySwipeRange;
+
+    [HideInInspector]
+    public bool isGrounded = false;
+
 
     void Start()
     {
@@ -103,6 +111,7 @@ public class Player_Physic : MonoBehaviour
         {
             myRb.constraints = RigidbodyConstraints2D.FreezeAll;
             canMove = false;
+            canJump = false;
         }
         else
         if(!isFrozen)
@@ -125,12 +134,12 @@ public class Player_Physic : MonoBehaviour
             jumpStrenght = jumpStrenghtMax;
         }
 
-        if(canMove)
-        {
-            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        //if(canMove)
+        //{
+        //    Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
 
-            transform.position += movement * Time.deltaTime * moveSpeed;
-        }
+        //    transform.position += movement * Time.deltaTime * moveSpeed;
+        //}
 
         #region Movement Mobile
         if (canMove && canJump)
@@ -152,40 +161,23 @@ public class Player_Physic : MonoBehaviour
                     swipeTime = swipeEndTime - swipeStartTime;
                     swipeLenght = (endSwipePosition - startSwipePosition).magnitude;
 
+                    if(endSwipePosition.y < startSwipePosition.y)
+                    {
+
+                    }
+                    else
                     if(swipeTime < maxSwipeTime && swipeLenght > minSwipeDistance)
                     {
                         SwipeMovement();
                     }
                 }
             }
-
-            
-
-            //dirX = Input.acceleration.x * moveSpeed;
-            //transform.position = new Vector2(Mathf.Clamp(transform.position.x, -5, 5), transform.position.y);
-
-            //if (dirX > 0 && dirX < 0.1)
-            //{
-
-            //}
-            //else
-            //if (dirX < 0 && dirX > -0.1)
-            //{
-
-            //}
-            //else
-            //{
-            //    Vector3 movement = new Vector3(dirX, 0f, 0f);
-
-            //    transform.position += movement * Time.deltaTime * moveSpeed;
-            //}
-
         }
+
         #endregion
 
         #region Jump
-
-        jumpStrenght = InitialJumpStrenght + (totalChildrenNumber);
+        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 20);
 
         if (GroundCheck.activeSelf == false) //se il mio ground check NON è attivo (quindi ho figli addosso) fammi saltare solo quando la mia veloctità in Y è negativa
         {
@@ -199,19 +191,6 @@ public class Player_Physic : MonoBehaviour
             {
                 gravityStrenght = gravityChanger;
                 canJump = false;
-            }
-        }
-        else
-        if(GroundCheck.activeSelf == true)
-        {
-            if (myRb.velocity.y < 0)
-            {
-                canJump = false;
-            }
-            else
-            if (myRb.velocity.y == 0)
-            {
-                canJump = true;
             }
         }
         #endregion
@@ -356,41 +335,20 @@ public class Player_Physic : MonoBehaviour
         }
     }
 
-    public void Jump()
-    {
-        if(!canJump)
-        {
-
-        }
-        else if (!isFrozen && canJump)
-        {
-            myRb.velocity = Vector2.up * jumpStrenght;
-            //myRb.AddForce(Vector2.up * jumpStrenght, ForceMode2D.Impulse);
-            Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
-        }
-    }
-    
-    public void MoveRight()
-    {
-        if(canMove)
-        {
-            myRb.AddForce(Vector2.right * 3, ForceMode2D.Impulse);
-        }
-    }
-    
-    public void MoveLeft()
-    {
-        if(canMove)
-        {
-            myRb.AddForce(Vector2.left * 3, ForceMode2D.Impulse);
-        }
-    }
-
     public void SwipeMovement()
     {
-        Vector3 swipeDirecion = (endSwipePosition - startSwipePosition);
-        Debug.Log(swipeDirecion);
+        Debug.Log(endSwipePosition.y - startSwipePosition.y);
 
-        myRb.AddForce(swipeDirecion * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+        Vector3 swipeDirecion = (endSwipePosition - startSwipePosition);
+
+        if(totalChildrenNumber == 0 && isGrounded == false)
+        {
+            Vector3 horizontalSwipe = new Vector3(endSwipePosition.x - startSwipePosition.x, 0, 0);
+            myRb.AddForce(horizontalSwipe.normalized * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+        }
+        else
+        {
+            myRb.AddForce(swipeDirecion.normalized * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+        }
     }
 }

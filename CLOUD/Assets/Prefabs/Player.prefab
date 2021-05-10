@@ -553,7 +553,7 @@ MonoBehaviour:
   gravityChanger: 3
   jumpFXPrefab: {fileID: 2318090136732233149, guid: 6136c9796d0593f439858c366f83ef70, type: 3}
   GroundCheck: {fileID: 5252843076976988484}
-  InitialJumpStrenght: 4
+  initialJumpStrenght: 1
   jumpStrenght: 4
   jumpStrenghtMax: 9
   totalChildrenNumber: 0
@@ -567,6 +567,14 @@ MonoBehaviour:
   - 4
   growingSpeed: 0.3
   MagneticField: {fileID: 5988228347127379957}
+  startSwipePosition: {x: 0, y: 0}
+  endSwipePosition: {x: 0, y: 0}
+  maxSwipeTime: 1
+  minSwipeDistance: 50
+  initialSwipeMovementSpeed: 400
+  swipeMovementSpeed: 400
+  ySwipeRange: 250
+  isGrounded: 0
 --- !u!95 &1121728922479601907
 Animator:
   serializedVersion: 3
