@@ -81,7 +81,7 @@ public class Player_Physic : MonoBehaviour
     public float swipeMovementSpeed;
     public float ySwipeRange;
 
-    [HideInInspector]
+
     public bool isGrounded = false;
 
 
@@ -177,22 +177,20 @@ public class Player_Physic : MonoBehaviour
         #endregion
 
         #region Jump
-        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 20);
+        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 40);
 
-        if (GroundCheck.activeSelf == false) //se il mio ground check NON è attivo (quindi ho figli addosso) fammi saltare solo quando la mia veloctità in Y è negativa
+        if (myRb.velocity.y <= 0)
         {
-            if (myRb.velocity.y <= 0)
-            {
-                gravityStrenght = gravityChanger / (totalChildrenNumber + 1);
-                canJump = true;
-            }
-            else
-            if (myRb.velocity.y >= 0)
-            {
-                gravityStrenght = gravityChanger;
-                canJump = false;
-            }
+            gravityStrenght = gravityChanger / (totalChildrenNumber + 1);
+            canJump = true;
         }
+        else
+        if (myRb.velocity.y >= 0)
+        {
+            gravityStrenght = gravityChanger;
+            canJump = false;
+        }
+
         #endregion
 
         #region scale feedback
@@ -226,7 +224,7 @@ public class Player_Physic : MonoBehaviour
         //    }
         //}
 
-        switch(totalChildrenNumber)
+        switch (totalChildrenNumber)
         {
             case 0:
                 graphics.transform.localScale = new Vector2 (scaleChanges[0], scaleChanges[0]);
@@ -327,11 +325,11 @@ public class Player_Physic : MonoBehaviour
 
         if(totalChildrenNumber == 6)
         {
-            MagneticField.SetActive(false);
+            StartCoroutine(DeactivatePerson());
         }
         else
         {
-            MagneticField.SetActive(true);
+            StartCoroutine(ActivatePerson());
         }
     }
 
@@ -349,6 +347,52 @@ public class Player_Physic : MonoBehaviour
         else
         {
             myRb.AddForce(swipeDirecion.normalized * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+        }
+    }
+
+    public IEnumerator DeactivatePerson()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GameObject[] People = GameObject.FindGameObjectsWithTag("Person");
+
+        foreach (GameObject person in People)
+        {
+            if (person.layer == 8)
+            {
+
+            }
+            else
+            {
+                person.GetComponent<SpriteRenderer>().enabled = false;
+                person.GetComponent<CircleCollider2D>().enabled = false;
+                person.GetComponent<BoxCollider2D>().enabled = false;
+                person.GetComponent<Person>().enabled = false;
+                person.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+    }
+
+    public IEnumerator ActivatePerson()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GameObject[] People = GameObject.FindGameObjectsWithTag("Person");
+
+        foreach (GameObject person in People)
+        {
+            if (person.layer == 8)
+            {
+
+            }
+            else
+            {
+                person.GetComponent<SpriteRenderer>().enabled = true;
+                person.GetComponent<CircleCollider2D>().enabled = true;
+                person.GetComponent<BoxCollider2D>().enabled = true;
+                person.GetComponent<Person>().enabled = true;
+                person.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
     }
 }
