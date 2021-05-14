@@ -5,6 +5,9 @@ using UnityEngine;
 public class Blink : MonoBehaviour
 {
     private GameObject Player;
+    public SpriteRenderer PlayerBorder;
+    public SpriteRenderer PlayerFill;
+
     private Animator myAnim;
 
     public float inputTimer;
@@ -18,6 +21,9 @@ public class Blink : MonoBehaviour
     private bool phase1;
     private bool phase2;
     private bool phase3;
+    private bool phase4;
+    [HideInInspector]
+    public bool phase5;
 
     void Start()
     {
@@ -71,7 +77,32 @@ public class Blink : MonoBehaviour
             {
                 myAnim.SetTrigger("doneSecondLamp");
                 phase3 = false;
+                phase4 = true;
             }
         }
+
+        if(phase4)
+        {
+            if (lampOn3.activeSelf)
+            {
+                myAnim.SetTrigger("goToEnd");
+                phase4 = false;
+            }
+        }
+
+        if(phase5)
+        {
+            myAnim.SetTrigger("whiteScreen");
+            phase5 = false;
+        }
+    }
+
+    public IEnumerator SwitchPlayer()
+    {
+        Debug.Log("sono morto");
+        //Player Muore
+        PlayerBorder.enabled = false;
+        PlayerFill.enabled = false;
+        yield return new WaitForSeconds(1f);
     }
 }

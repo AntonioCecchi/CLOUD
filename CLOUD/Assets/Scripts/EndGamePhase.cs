@@ -19,13 +19,15 @@ public class EndGamePhase : MonoBehaviour
         if(other.tag == "Player")
         {
             StartCoroutine(FirstPart());
+
+            Blink.GetComponent<Blink>().phase5 = true;
         }
     }
 
     public IEnumerator FirstPart()
     {
-        Player.GetComponent<Player_Physic>().canJump = false;
-        Player.GetComponent<Player_Physic>().canMove = false;
+        //setup Player
+        Player.GetComponent<Player_Physic>().enabled = false;
         Rigidbody2D rb = Player.GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
@@ -35,20 +37,17 @@ public class EndGamePhase : MonoBehaviour
 
         foreach (GameObject child in ChildrenManagerChildren)
         {
-            if(child.transform.GetChild(0) != null)
+            if(child.transform.childCount > 0)
             {
                 child.transform.GetChild(0).parent = null;
             }
         }
+
         Player.transform.position = Blink.transform.position;
         yield return new WaitForSeconds(1f);
 
         //posizionali a semicerchio
         
-        yield return new WaitForSeconds(1f);
-
-        //Player Muore
-        Player.GetComponent<SpriteRenderer>().enabled = false;
-        
     }
+
 }
