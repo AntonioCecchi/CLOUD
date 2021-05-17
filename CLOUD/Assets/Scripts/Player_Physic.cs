@@ -335,8 +335,6 @@ public class Player_Physic : MonoBehaviour
 
     public void SwipeMovement()
     {
-        Debug.Log(endSwipePosition.y - startSwipePosition.y);
-
         Vector3 swipeDirecion = (endSwipePosition - startSwipePosition);
 
         if(totalChildrenNumber == 0 && isGrounded == false)

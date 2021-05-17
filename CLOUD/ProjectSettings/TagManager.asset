@@ -17,6 +17,7 @@ TagManager:
   - PersonOnPlayer
   - CameraTrigger
   - NorthEnemyTrigger
+  - EndPositions
   layers:
   - Default
   - TransparentFX
