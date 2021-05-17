@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class EndGamePhase : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EndGamePhase : MonoBehaviour
 
     [HideInInspector]
     public GameObject newPlayer;
+
+    public CinemachineVirtualCamera vCam;
 
     #region get children
     private GameObject firstChild;
@@ -38,6 +41,11 @@ public class EndGamePhase : MonoBehaviour
     private Vector3 InitialSixth;
     private Transform EndSixth;
     #endregion
+
+    private bool doneCoroutine = false;
+    private bool goNewPlayer = false;
+    private bool goToBlink = false;
+    private bool awayChildren = false;
 
 
     void Start()
@@ -86,16 +94,9 @@ public class EndGamePhase : MonoBehaviour
         Player.GetComponent<Player_Physic>().enabled = false;
         Rigidbody2D rb = Player.GetComponent<Rigidbody2D>();
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        Player.transform.position = new Vector2(Blink.transform.position.x, Player.transform.position.y);
-
 
         //posiziona i figli a semicerchio
-        firstChild.transform.position = EndFirst.transform.position;
-        secondChild.transform.position = EndSecond.transform.position;
-        thirdChild.transform.position = EndThird.transform.position;
-        fourthChild.transform.position = EndFourth.transform.position;
-        fifthChild.transform.position = EndFifth.transform.position;
-        sixthChild.transform.position = EndSixth.transform.position;
+        awayChildren = true;
 
         yield return new WaitForSeconds(1f);
 
@@ -104,12 +105,59 @@ public class EndGamePhase : MonoBehaviour
 
         foreach (GameObject child in ChildrenManagerChildren)
         {
-            if (child.transform.childCount > 0)
+            bool newPlayerFound = false;
+
+            if (child.transform.childCount > 0 && !newPlayerFound)
             {
-                child.transform.GetChild(0).parent = null;
+                newPlayer = child;
+                newPlayerFound = true;
             }
         }
 
-        Player.transform.position = Blink.transform.position;
+        goToBlink = true;
+
+        awayChildren = false;
+
+        yield return new WaitForSeconds(8f);
+
+        goToBlink = false;
+        goNewPlayer = true;
+        //newPlayer.transform.position = Player.transform.position;
+
+        vCam.Follow = gameObject.transform;
+
+        yield return new WaitForSeconds(5f);
+
+        goNewPlayer = false;
+        doneCoroutine = true;
+        
+    }
+
+    private void Update()
+    {
+        if(awayChildren)
+        {
+            firstChild.transform.position = Vector3.MoveTowards(firstChild.transform.position, EndFirst.transform.position, Time.deltaTime);
+            secondChild.transform.position = Vector3.MoveTowards(secondChild.transform.position, EndSecond.transform.position, Time.deltaTime);
+            thirdChild.transform.position = Vector3.MoveTowards(thirdChild.transform.position, EndThird.transform.position, Time.deltaTime);
+            fourthChild.transform.position = Vector3.MoveTowards(fourthChild.transform.position, EndFourth.transform.position, Time.deltaTime);
+            fifthChild.transform.position = Vector3.MoveTowards(fifthChild.transform.position, EndFifth.transform.position, Time.deltaTime);
+            sixthChild.transform.position = Vector3.MoveTowards(sixthChild.transform.position, EndSixth.transform.position, Time.deltaTime);
+        }
+
+        if (goToBlink)
+        {
+            Player.transform.position = Vector3.MoveTowards(Player.transform.position, Blink.transform.position, 1.5f * Time.deltaTime);
+        }
+
+        if (goNewPlayer)
+        {
+            newPlayer.transform.position = Vector3.MoveTowards(newPlayer.transform.position, Player.transform.position, Time.deltaTime);
+        }
+
+        if(doneCoroutine)
+        {
+            Player.transform.Translate(Vector2.up * 2 * Time.deltaTime);
+        }
     }
 }
