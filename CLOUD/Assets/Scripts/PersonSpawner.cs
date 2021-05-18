@@ -21,7 +21,14 @@ public class PersonSpawner : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
+        if (player.GetComponent<Player_Physic>().isGrounded)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+
+        }
 
         if(timer <= 0)
         {

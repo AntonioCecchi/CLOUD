@@ -26,11 +26,6 @@ public class Player_Physic : MonoBehaviour
     public float gravityChanger = 5f;
     public GameObject jumpFXPrefab;
     public GameObject GroundCheck;
-
-    [Space(10)]
-    public float initialJumpStrenght = 1.0f;
-    public float jumpStrenght = 1.0f;   
-    public float jumpStrenghtMax = 1.0f;
     #endregion
 
     #region Children Var
@@ -129,11 +124,6 @@ public class Player_Physic : MonoBehaviour
         totalChildrenNumber = first.transform.childCount + second.transform.childCount + third.transform.childCount + fourth.transform.childCount + fifth.transform.childCount + sixth.transform.childCount + seventh.transform.childCount + eighth.transform.childCount; //quante persone attaccate in totale al player (conta anche le persone attaccate alle altre persone)
 
 
-        if (jumpStrenght >= jumpStrenghtMax)
-        {
-            jumpStrenght = jumpStrenghtMax;
-        }
-
         //if(canMove)
         //{
         //    Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
@@ -176,8 +166,8 @@ public class Player_Physic : MonoBehaviour
 
         #endregion
 
-        #region Jump
-        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 40);
+        #region Swipe
+        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 70);
 
         if (myRb.velocity.y <= 0)
         {

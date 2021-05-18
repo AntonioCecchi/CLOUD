@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Fade : MonoBehaviour
 {
-    private SpriteRenderer spriteR;
     private Animator myAnimator;
 
     private void Start()
@@ -24,7 +23,6 @@ public class Fade : MonoBehaviour
 
     public void PlayerDeath()
     {
-
         myAnimator.SetTrigger("playerIsDead");
     }
 

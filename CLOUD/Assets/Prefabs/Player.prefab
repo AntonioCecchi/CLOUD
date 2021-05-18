@@ -46,7 +46,7 @@ MonoBehaviour:
   person: {fileID: 2004626046284668782, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
   player: {fileID: 2609947995044432621}
   spawnTime: 0
-  spawnTimeMax: 10
+  spawnTimeMax: 8
 --- !u!1 &425057428
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,12 +765,9 @@ MonoBehaviour:
   canMove: 1
   canJump: 0
   gravityStrenght: 3
-  gravityChanger: 3
+  gravityChanger: 5
   jumpFXPrefab: {fileID: 2318090136732233149, guid: 6136c9796d0593f439858c366f83ef70, type: 3}
   GroundCheck: {fileID: 5252843076976988484}
-  initialJumpStrenght: 1
-  jumpStrenght: 4
-  jumpStrenghtMax: 9
   totalChildrenNumber: 0
   scaleChanges:
   - 1
@@ -786,7 +783,7 @@ MonoBehaviour:
   endSwipePosition: {x: 0, y: 0}
   maxSwipeTime: 1
   minSwipeDistance: 50
-  initialSwipeMovementSpeed: 400
+  initialSwipeMovementSpeed: 500
   swipeMovementSpeed: 400
   ySwipeRange: 250
   isGrounded: 0

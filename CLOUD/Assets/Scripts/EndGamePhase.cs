@@ -10,6 +10,7 @@ public class EndGamePhase : MonoBehaviour
     private GameObject EndPositions;
     private GameObject[] ChildrenManagerChildren;
     public GameObject Blink;
+    public GameObject fade;
 
     [HideInInspector]
     public GameObject newPlayer;
@@ -47,6 +48,7 @@ public class EndGamePhase : MonoBehaviour
     private bool goToBlink = false;
     private bool awayChildren = false;
 
+    private GameObject[] Enemies;
 
     void Start()
     {
@@ -82,6 +84,12 @@ public class EndGamePhase : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject enemy in Enemies)
+            {
+                Destroy(enemy.gameObject);
+            }
+
             StartCoroutine(FirstPart());
 
             Blink.GetComponent<Blink>().phase5 = true;
@@ -130,7 +138,10 @@ public class EndGamePhase : MonoBehaviour
 
         goNewPlayer = false;
         doneCoroutine = true;
-        
+
+        yield return new WaitForSeconds(2f);
+
+        fade.GetComponent<Animator>().SetTrigger("playerIsDead");
     }
 
     private void Update()
