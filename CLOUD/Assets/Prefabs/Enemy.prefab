@@ -158,5 +158,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAwake: 0
-  speed: 4
-  rotateSpeed: 60
+  speed: 5.5
+  rotateSpeed: 50

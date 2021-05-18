@@ -11,6 +11,7 @@ public class EndGamePhase : MonoBehaviour
     private GameObject[] ChildrenManagerChildren;
     public GameObject Blink;
     public GameObject fade;
+    public GameObject Soundtrack;
 
     [HideInInspector]
     public GameObject newPlayer;
@@ -90,14 +91,21 @@ public class EndGamePhase : MonoBehaviour
                 Destroy(enemy.gameObject);
             }
 
-            StartCoroutine(FirstPart());
+            StartCoroutine(EndPhase());
 
             Blink.GetComponent<Blink>().phase5 = true;
         }
     }
 
-    public IEnumerator FirstPart()
+    public IEnumerator EndPhase()
     {
+        Soundtrack.GetComponent<AudioSource>().volume -= Time.deltaTime / 20;
+
+        if(Soundtrack.GetComponent<AudioSource>().volume <= 0)
+        {
+            Soundtrack.GetComponent<AudioSource>().volume = 0;
+        }
+
         //setup Player
         Player.GetComponent<Player_Physic>().enabled = false;
         Rigidbody2D rb = Player.GetComponent<Rigidbody2D>();
