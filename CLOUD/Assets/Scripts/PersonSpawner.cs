@@ -12,16 +12,19 @@ public class PersonSpawner : MonoBehaviour
     public float spawnTime;
     public float spawnTimeMax;
     private float timer;
+    private bool gameStarted;
 
     void Start()
     {
+        gameStarted = true;
+
         spawnTime = spawnTimeMax;
-        timer = 30f;
+        timer = 40f;
     }
 
     void Update()
     {
-        if (player.GetComponent<Player_Physic>().isGrounded)
+        if (gameStarted)
         {
             timer -= Time.deltaTime;
         }

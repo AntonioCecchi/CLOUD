@@ -46,7 +46,7 @@ MonoBehaviour:
   person: {fileID: 2004626046284668782, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
   player: {fileID: 2609947995044432621}
   spawnTime: 0
-  spawnTimeMax: 8
+  spawnTimeMax: 4
 --- !u!1 &425057428
 GameObject:
   m_ObjectHideFlags: 0
