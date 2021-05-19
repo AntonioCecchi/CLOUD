@@ -151,8 +151,6 @@ public class Person : MonoBehaviour
 
         if (isGoingAway)
         {
-            Debug.Log(randomChance);
-
             if (randomChance < 3f)
             {
                 Vector2 left = new Vector2(-5, -5);
@@ -199,8 +197,8 @@ public class Person : MonoBehaviour
             else
             if (randomChance >= 7f)
             {
-                Vector2 right = new Vector2(10, -3);
-                transform.Translate(right * 0.2f * Time.deltaTime);
+                Vector2 right = new Vector2(30, -3);
+                transform.Translate(right * 0.2f * Time.deltaTime / 3);
 
                 timer1 -= Time.deltaTime;
                 timer2 -= Time.deltaTime;
@@ -214,7 +212,6 @@ public class Person : MonoBehaviour
                 if (timer2 <= 0)
                 {
                     isGoingAway = false;
-                    Destroy(gameObject);
                     timer2 = timer2Max;
                     timer1 = timer1Max;
                 }
