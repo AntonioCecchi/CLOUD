@@ -48,6 +48,7 @@ public class EndGamePhase : MonoBehaviour
     private bool goNewPlayer = false;
     private bool goToBlink = false;
     private bool awayChildren = false;
+    private bool lowSoundtrack = false;
 
     private GameObject[] Enemies;
 
@@ -99,12 +100,7 @@ public class EndGamePhase : MonoBehaviour
 
     public IEnumerator EndPhase()
     {
-        Soundtrack.GetComponent<AudioSource>().volume -= Time.deltaTime / 20;
-
-        if(Soundtrack.GetComponent<AudioSource>().volume <= 0)
-        {
-            Soundtrack.GetComponent<AudioSource>().volume = 0;
-        }
+        lowSoundtrack = true;
 
         //setup Player
         Player.GetComponent<Player_Physic>().enabled = false;
@@ -177,6 +173,18 @@ public class EndGamePhase : MonoBehaviour
         if(doneCoroutine)
         {
             Player.transform.Translate(Vector2.up * 2 * Time.deltaTime);
+        }
+
+        if(lowSoundtrack)
+        {
+            Soundtrack.GetComponent<AudioSource>().volume -= Time.deltaTime / 150;
+
+            if (Soundtrack.GetComponent<AudioSource>().volume <= 0)
+            {
+                Soundtrack.GetComponent<AudioSource>().volume = 0;
+
+                lowSoundtrack = false;
+            }
         }
     }
 }
