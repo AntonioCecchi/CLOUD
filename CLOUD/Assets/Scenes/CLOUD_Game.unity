@@ -331,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &41330241
 Transform:
   m_ObjectHideFlags: 0
@@ -1222,7 +1222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &396127266
 Transform:
   m_ObjectHideFlags: 0
@@ -1324,7 +1324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &427679718
 Transform:
   m_ObjectHideFlags: 0
@@ -2699,11 +2699,11 @@ PrefabInstance:
       objectReference: {fileID: 2609947996395344503}
     - target: {fileID: 970764336398712806, guid: bd4fe5ed9a2ace640bce2142963c4173, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6499999
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 970764336398712806, guid: bd4fe5ed9a2ace640bce2142963c4173, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 217.58
+      value: -1.919999
       objectReference: {fileID: 0}
     - target: {fileID: 970764336695696687, guid: bd4fe5ed9a2ace640bce2142963c4173, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -2723,7 +2723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 970764336695696848, guid: bd4fe5ed9a2ace640bce2142963c4173, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 217.57327
+      value: -1.9148716
       objectReference: {fileID: 0}
     - target: {fileID: 1704225569136301358, guid: bd4fe5ed9a2ace640bce2142963c4173, type: 3}
       propertyPath: m_Name
@@ -4617,11 +4617,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2609947995044432623, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2609947995044432623, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 212.9
+      value: -6.6
       objectReference: {fileID: 0}
     - target: {fileID: 2609947995044432623, guid: c2080b9ac7e547e4d91621a47f56abd3, type: 3}
       propertyPath: m_LocalPosition.z

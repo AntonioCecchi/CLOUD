@@ -72,13 +72,6 @@ public class EndGamePhase : MonoBehaviour
         EndFifth = EndPositions.transform.GetChild(4);
         sixthChild = ChildrenManager.transform.GetChild(5).gameObject;
         EndSixth = EndPositions.transform.GetChild(5);
-
-        InitialFirst = firstChild.transform.position;
-        InitialSecond = secondChild.transform.position;
-        InitialThird = thirdChild.transform.position;
-        InitialFourth = fourthChild.transform.position;
-        InitialFifth = fifthChild.transform.position;
-        InitialSixth = sixthChild.transform.position;
         #endregion
     }
 
@@ -100,6 +93,13 @@ public class EndGamePhase : MonoBehaviour
 
     public IEnumerator EndPhase()
     {
+        InitialFirst = firstChild.transform.position;
+        InitialSecond = secondChild.transform.position;
+        InitialThird = thirdChild.transform.position;
+        InitialFourth = fourthChild.transform.position;
+        InitialFifth = fifthChild.transform.position;
+        InitialSixth = sixthChild.transform.position;
+
         lowSoundtrack = true;
 
         //setup Player
@@ -134,7 +134,6 @@ public class EndGamePhase : MonoBehaviour
 
         goToBlink = false;
         goNewPlayer = true;
-        //newPlayer.transform.position = Player.transform.position;
 
         vCam.Follow = gameObject.transform;
 
@@ -173,6 +172,15 @@ public class EndGamePhase : MonoBehaviour
         if(doneCoroutine)
         {
             Player.transform.Translate(Vector2.up * 2 * Time.deltaTime);
+
+            Player.GetComponent<Animator>().SetTrigger("GoUp");
+
+            //firstChild.transform.position = Vector3.MoveTowards(firstChild.transform.position, InitialFirst, Time.deltaTime);
+            //secondChild.transform.position = Vector3.MoveTowards(secondChild.transform.position, InitialSecond, Time.deltaTime);
+            //thirdChild.transform.position = Vector3.MoveTowards(thirdChild.transform.position, InitialThird, Time.deltaTime);
+            //fourthChild.transform.position = Vector3.MoveTowards(fourthChild.transform.position, InitialFourth, Time.deltaTime);
+            //fifthChild.transform.position = Vector3.MoveTowards(fifthChild.transform.position, InitialFifth, Time.deltaTime);
+            //sixthChild.transform.position = Vector3.MoveTowards(sixthChild.transform.position, InitialSixth, Time.deltaTime);
         }
 
         if(lowSoundtrack)
