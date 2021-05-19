@@ -11,9 +11,7 @@ public class Player_Physic : MonoBehaviour
     #region Movement Var
     [Header("Movement Variables")]
 
-    public float moveSpeed = 5f;
     private Rigidbody2D myRb;
-    private float dirX;
     public bool canMove;
     #endregion
 
@@ -124,13 +122,6 @@ public class Player_Physic : MonoBehaviour
         totalChildrenNumber = first.transform.childCount + second.transform.childCount + third.transform.childCount + fourth.transform.childCount + fifth.transform.childCount + sixth.transform.childCount + seventh.transform.childCount + eighth.transform.childCount; //quante persone attaccate in totale al player (conta anche le persone attaccate alle altre persone)
 
 
-        //if(canMove)
-        //{
-        //    Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-
-        //    transform.position += movement * Time.deltaTime * moveSpeed;
-        //}
-
         #region Movement Mobile
         if (canMove && canJump)
         {
@@ -167,7 +158,7 @@ public class Player_Physic : MonoBehaviour
         #endregion
 
         #region Swipe
-        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 70);
+        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 60);
 
         if (myRb.velocity.y <= 0)
         {
@@ -331,10 +322,12 @@ public class Player_Physic : MonoBehaviour
         {
             Vector3 horizontalSwipe = new Vector3(endSwipePosition.x - startSwipePosition.x, 0, 0);
             myRb.AddForce(horizontalSwipe.normalized * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
         }
         else
         {
             myRb.AddForce(swipeDirecion.normalized * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
         }
     }
 

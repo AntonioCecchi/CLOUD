@@ -1757,6 +1757,7 @@ MonoBehaviour:
   Soundtrack: {fileID: 777522075}
   newPlayer: {fileID: 0}
   vCam: {fileID: 1771058678}
+  playerColor: {r: 0.9176471, g: 0.77647066, b: 0.18823531, a: 0.9411765}
 --- !u!1001 &619578687
 PrefabInstance:
   m_ObjectHideFlags: 0

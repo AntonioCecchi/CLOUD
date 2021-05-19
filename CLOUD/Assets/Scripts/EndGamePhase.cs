@@ -49,6 +49,7 @@ public class EndGamePhase : MonoBehaviour
     private bool goToBlink = false;
     private bool awayChildren = false;
     private bool lowSoundtrack = false;
+    public Color playerColor;
 
     private GameObject[] Enemies;
 
@@ -151,12 +152,12 @@ public class EndGamePhase : MonoBehaviour
     {
         if(awayChildren)
         {
-            firstChild.transform.position = Vector3.MoveTowards(firstChild.transform.position, EndFirst.transform.position, Time.deltaTime);
-            secondChild.transform.position = Vector3.MoveTowards(secondChild.transform.position, EndSecond.transform.position, Time.deltaTime);
-            thirdChild.transform.position = Vector3.MoveTowards(thirdChild.transform.position, EndThird.transform.position, Time.deltaTime);
-            fourthChild.transform.position = Vector3.MoveTowards(fourthChild.transform.position, EndFourth.transform.position, Time.deltaTime);
-            fifthChild.transform.position = Vector3.MoveTowards(fifthChild.transform.position, EndFifth.transform.position, Time.deltaTime);
-            sixthChild.transform.position = Vector3.MoveTowards(sixthChild.transform.position, EndSixth.transform.position, Time.deltaTime);
+            firstChild.transform.position = Vector3.MoveTowards(firstChild.transform.position, EndFirst.transform.position, Time.deltaTime / 2);
+            secondChild.transform.position = Vector3.MoveTowards(secondChild.transform.position, EndSecond.transform.position, Time.deltaTime / 2);
+            thirdChild.transform.position = Vector3.MoveTowards(thirdChild.transform.position, EndThird.transform.position, Time.deltaTime / 2);
+            fourthChild.transform.position = Vector3.MoveTowards(fourthChild.transform.position, EndFourth.transform.position, Time.deltaTime / 2);
+            fifthChild.transform.position = Vector3.MoveTowards(fifthChild.transform.position, EndFifth.transform.position, Time.deltaTime / 2);
+            sixthChild.transform.position = Vector3.MoveTowards(sixthChild.transform.position, EndSixth.transform.position, Time.deltaTime / 2);
         }
 
         if (goToBlink)
@@ -171,16 +172,8 @@ public class EndGamePhase : MonoBehaviour
 
         if(doneCoroutine)
         {
+            newPlayer.GetComponent<SpriteRenderer>().color = playerColor;
             Player.transform.Translate(Vector2.up * 2 * Time.deltaTime);
-
-            Player.GetComponent<Animator>().SetTrigger("GoUp");
-
-            //firstChild.transform.position = Vector3.MoveTowards(firstChild.transform.position, InitialFirst, Time.deltaTime);
-            //secondChild.transform.position = Vector3.MoveTowards(secondChild.transform.position, InitialSecond, Time.deltaTime);
-            //thirdChild.transform.position = Vector3.MoveTowards(thirdChild.transform.position, InitialThird, Time.deltaTime);
-            //fourthChild.transform.position = Vector3.MoveTowards(fourthChild.transform.position, InitialFourth, Time.deltaTime);
-            //fifthChild.transform.position = Vector3.MoveTowards(fifthChild.transform.position, InitialFifth, Time.deltaTime);
-            //sixthChild.transform.position = Vector3.MoveTowards(sixthChild.transform.position, InitialSixth, Time.deltaTime);
         }
 
         if(lowSoundtrack)
