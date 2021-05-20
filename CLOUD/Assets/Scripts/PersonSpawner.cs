@@ -28,17 +28,13 @@ public class PersonSpawner : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        else
-        {
-
-        }
 
         if(timer <= 0)
         {
             timer = 0;
         }
 
-        if (player.GetComponent<Player_Physic>().totalChildrenNumber == 0 && timer == 0)
+        if (player.GetComponent<Player_Physic>().totalChildrenNumber == 0 && timer == 0  && player.GetComponent<Player_Physic>().isGrounded)
         {
             spawnTime -= Time.deltaTime;
         }
@@ -50,7 +46,6 @@ public class PersonSpawner : MonoBehaviour
 
         if(spawnTime <= 0)
         {
-
             spawnTime = spawnTimeMax;
 
             SpawnPerson();

@@ -46,7 +46,7 @@ MonoBehaviour:
   person: {fileID: 2004626046284668782, guid: 209237ff1cf1f244793a332f11f9f08d, type: 3}
   player: {fileID: 2609947995044432621}
   spawnTime: 0
-  spawnTimeMax: 4
+  spawnTimeMax: 5
 --- !u!1 &425057428
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFrozen: 0
-  moveSpeed: 5
   canMove: 1
   canJump: 0
   gravityStrenght: 3
@@ -782,9 +781,10 @@ MonoBehaviour:
   startSwipePosition: {x: 0, y: 0}
   endSwipePosition: {x: 0, y: 0}
   maxSwipeTime: 1
+  maxSwipeDistance: 750
   minSwipeDistance: 50
-  initialSwipeMovementSpeed: 500
-  swipeMovementSpeed: 400
+  initialSwipeMovementSpeed: 1
+  swipeMovementSpeed: 1
   ySwipeRange: 250
   isGrounded: 0
 --- !u!95 &1121728922479601907

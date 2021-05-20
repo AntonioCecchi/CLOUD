@@ -40,7 +40,7 @@ public class Player_Physic : MonoBehaviour
     private GameObject eighth;
 
     [Space(10)]
-    public int totalChildrenNumber;
+    public float totalChildrenNumber;
 
     #endregion
 
@@ -67,6 +67,7 @@ public class Player_Physic : MonoBehaviour
     public Vector2 endSwipePosition;
 
     public float maxSwipeTime;
+    public float maxSwipeDistance;
     public float minSwipeDistance;
 
     [Space(10)]
@@ -142,12 +143,17 @@ public class Player_Physic : MonoBehaviour
                     swipeTime = swipeEndTime - swipeStartTime;
                     swipeLenght = (endSwipePosition - startSwipePosition).magnitude;
 
+                    if(swipeLenght > maxSwipeDistance)
+                    {
+                        swipeLenght = maxSwipeDistance;
+                    }
+
                     if(endSwipePosition.y < startSwipePosition.y)
                     {
 
                     }
                     else
-                    if(swipeTime < maxSwipeTime && swipeLenght > minSwipeDistance)
+                    if(swipeTime < maxSwipeTime && swipeLenght > minSwipeDistance && swipeLenght <= maxSwipeDistance)
                     {
                         SwipeMovement();
                     }
@@ -158,7 +164,8 @@ public class Player_Physic : MonoBehaviour
         #endregion
 
         #region Swipe
-        swipeMovementSpeed = initialSwipeMovementSpeed + (totalChildrenNumber * 60);
+        swipeMovementSpeed = initialSwipeMovementSpeed + totalChildrenNumber / 6;
+        Debug.Log(swipeMovementSpeed);
 
         if (myRb.velocity.y <= 0)
         {
@@ -316,17 +323,17 @@ public class Player_Physic : MonoBehaviour
 
     public void SwipeMovement()
     {
-        Vector3 swipeDirecion = (endSwipePosition - startSwipePosition);
+        Vector3 swipeDirection = (endSwipePosition - startSwipePosition);
 
         if(totalChildrenNumber == 0 && isGrounded == false)
         {
             Vector3 horizontalSwipe = new Vector3(endSwipePosition.x - startSwipePosition.x, 0, 0);
-            myRb.AddForce(horizontalSwipe.normalized * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            myRb.AddForce(horizontalSwipe * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
             Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
         }
         else
         {
-            myRb.AddForce(swipeDirecion.normalized * swipeMovementSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            myRb.AddForce(swipeDirection * swipeMovementSpeed *  Time.deltaTime, ForceMode2D.Impulse);
             Instantiate(jumpFXPrefab, transform.position, Quaternion.identity);
         }
     }
